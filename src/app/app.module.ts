@@ -7,32 +7,23 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
 import { AppRoutingModule } from './app.routing.module'
 
-import { uiReducer } from './store/ui.reducer'
-
 import { AppComponent } from './app.component'
 
-import { BodyComponent } from './components/body/body.component'
-import { BodyContainerComponent } from './containers/body-container/body-container.component'
-import { NavbarComponent } from './components/navbar/navbar.component'
-import { NavbarContainerComponent } from './containers/navbar-container/navbar-container.component'
-
 import { MaterialModule } from './shared/material/material.module'
+import { LayoutModule } from './layout/layout.module'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarContainerComponent,
-    NavbarComponent,
-    BodyContainerComponent,
-    BodyComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ ui: uiReducer }),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument(),
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
-import { UiState } from "./ui.reducer"
+import { uiFeatureKey, UiState } from "../layout/store/ui.reducer"
 
 export interface AppState {
-  ui: UiState
+  [uiFeatureKey]: UiState
 }
