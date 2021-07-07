@@ -1,5 +1,5 @@
 <h1>Опишіть новий список питань</h1>
-<form [formGroup]="checklistForm">
+<form [formGroup]="checklistForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="standard">
     <mat-label>Назва</mat-label>
     <input matInput formControlName="name">
@@ -9,5 +9,5 @@
       <textarea matInput [formControlName]="i" cdkTextareaAutosize></textarea>
     </mat-form-field>
   </ng-container>
-  <button type="submit" mat-button color="primary">Зберегти</button>
+  <button type="submit" mat-button color="primary" [disabled]="checklistForm.invalid">Зберегти</button>
 </form>
