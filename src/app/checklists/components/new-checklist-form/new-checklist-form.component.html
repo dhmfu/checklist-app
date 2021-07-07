@@ -1,0 +1,13 @@
+<h1>Опишіть новий список питань</h1>
+<form [formGroup]="checklistForm">
+  <mat-form-field appearance="standard">
+    <mat-label>Назва</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+  <ng-container formArrayName="questions">
+    <mat-form-field appearance="standard"*ngFor="let questionInput of questions.controls; index as i">
+      <textarea matInput [formControlName]="i" cdkTextareaAutosize></textarea>
+    </mat-form-field>
+  </ng-container>
+  <button type="submit" mat-button color="primary">Зберегти</button>
+</form>

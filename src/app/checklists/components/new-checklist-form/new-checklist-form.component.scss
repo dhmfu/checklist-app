@@ -1,0 +1,25 @@
+:host {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+  
+    mat-form-field {
+      width: 100%;
+    }
+  
+    button {
+      align-self: flex-end;
+      margin-top: 15px;
+    }
+    
+    @media only screen and (max-width: 700px) {
+      width: 250px;
+    }
+  }
+}
