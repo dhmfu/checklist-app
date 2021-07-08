@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
-import { Store } from '@ngrx/store'
-import { AppState } from 'src/app/store/app.state'
-import { toggleMenu } from 'src/app/layout/store/ui.actions'
+
+import { LayoutStateService } from '../../facade/layout-state.service'
 
 @Component({
   selector: 'app-navbar',
@@ -10,10 +9,10 @@ import { toggleMenu } from 'src/app/layout/store/ui.actions'
 })
 export class NavbarComponent {
 
-  constructor(private store: Store<AppState>){}
+  constructor(private layoutService: LayoutStateService){}
 
   onToggleMenu(): void {
-    this.store.dispatch(toggleMenu())
+    this.layoutService.toggleMenu()
   }
 
 }

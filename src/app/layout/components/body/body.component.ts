@@ -1,24 +1,18 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 
-import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
-import { AppState } from '../../../store/app.state'
-import { selectMenuVisible } from '../../store/ui.selectors'
+import { LayoutStateService } from '../../facade/layout-state.service'
 
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.scss']
 })
-export class BodyComponent implements OnInit {
+export class BodyComponent {
 
-  menuVisible$: Observable<boolean> = this.store.select(selectMenuVisible)
+  menuVisible$: Observable<boolean> = this.layoutState.getMenuVisible()
 
-  constructor(private store: Store<AppState>) {}
-
-  ngOnInit(): void {
-    //
-  }
+  constructor(private layoutState: LayoutStateService) {}
 
 }
