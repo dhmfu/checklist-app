@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common'
 import { ReactiveFormsModule } from '@angular/forms'
 import { Routes, RouterModule } from '@angular/router'
 
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+
+import { MaterialModule } from '../shared/material/material.module'
+
 import { ChecklistsComponent } from './checklists.component'
 import { NewChecklistContainerComponent } from './containers/new-checklist-container/new-checklist-container.component'
 import { NewChecklistFormComponent } from './components/new-checklist-form/new-checklist-form.component'
-import { MaterialModule } from '../shared/material/material.module'
-
 
 const routes: Routes = [
   { path: 'new', component: NewChecklistContainerComponent },
@@ -23,8 +26,10 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MaterialModule
   ]
 })
 export class ChecklistsModule { }

@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 
-import { StoreModule } from '@ngrx/store'
+import { MatListModule } from '@angular/material/list'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatSidenavModule } from '@angular/material/sidenav'
 
-import { MaterialModule } from '../shared/material/material.module'
+import { StoreModule } from '@ngrx/store'
 
 import { uiFeatureKey, uiReducer } from './store/ui.reducer'
 
@@ -12,6 +14,7 @@ import { BodyUiComponent } from './components/body/body-ui.component'
 import { BodyComponent } from './components/body/body.component'
 import { NavbarUiComponent } from './components/navbar/navbar-ui.component'
 import { NavbarComponent } from './components/navbar/navbar.component'
+import { MaterialModule } from '../shared/material/material.module'
 
 @NgModule({
   declarations: [
@@ -22,9 +25,12 @@ import { NavbarComponent } from './components/navbar/navbar.component'
   ],
   imports: [
     CommonModule,
-    MaterialModule,
     RouterModule,
-    StoreModule.forFeature(uiFeatureKey, uiReducer)
+    StoreModule.forFeature(uiFeatureKey, uiReducer),
+    MaterialModule,
+    MatListModule,
+    MatToolbarModule,
+    MatSidenavModule
   ],
   exports: [
     NavbarComponent,

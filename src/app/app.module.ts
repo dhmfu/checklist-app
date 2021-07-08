@@ -7,10 +7,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
 import { AppRoutingModule } from './app.routing.module'
 
-import { AppComponent } from './app.component'
-
-import { MaterialModule } from './shared/material/material.module'
 import { LayoutModule } from './layout/layout.module'
+
+import { AppComponent } from './app.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { LayoutModule } from './layout/layout.module'
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument(),
     AppRoutingModule,
-    MaterialModule,
     LayoutModule
   ],
   providers: [],
