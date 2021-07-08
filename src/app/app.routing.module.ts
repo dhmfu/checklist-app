@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 
+import { ChecklistsModule } from './checklists/checklists.module'
+
 const routes: Routes = [
-  { path: 'checklists', loadChildren: () => import('./checklists/checklists.module').then(m => m.ChecklistsModule) }
+  { path: 'checklists', loadChildren: () => ChecklistsModule }
 ]
 
 @NgModule({

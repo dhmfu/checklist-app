@@ -1,14 +1,9 @@
 import { Component, ChangeDetectionStrategy, Input, OnChanges, Output, EventEmitter } from '@angular/core'
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
 
+// TODO: implement ChecklistForm interface type-check
 // TODO: implement placeholder(s) for questions
 // TODO: implement order change
-
-// TODO: move interface
-export interface ChecklistForm {
-  name: string
-  questions: string[]
-}
 
 @Component({
   selector: 'app-new-checklist-ui',

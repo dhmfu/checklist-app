@@ -1,23 +1,21 @@
-import { Component, OnInit } from '@angular/core'
-// TODO: Not direct list import
-import { DEFAULT_QUESTIONS } from 'src/app/constants/template'
+import { Component } from '@angular/core'
 
-import { ChecklistForm } from './new-checklist-ui.component'
+import { ChecklistsService } from '../../facade/checklists.service'
+
+import { ChecklistForm } from '../../models/checklist-form.interface'
 
 @Component({
   templateUrl: './new-checklist.component.html',
   styleUrls: ['./new-checklist.component.scss']
 })
-export class NewChecklistComponent implements OnInit {
+export class NewChecklistComponent {
 
-  list: string[] = []
+  list$ = this.checklistsService.getDefaultQuestionList()
 
-  ngOnInit(): void {
-    this.list = DEFAULT_QUESTIONS
-  }
+  constructor(private checklistsService: ChecklistsService) {}
 
   onCreate(formValue: ChecklistForm): void {
-    console.log(formValue)
+    this.checklistsService.createChecklist(formValue)
   }
 
 }
