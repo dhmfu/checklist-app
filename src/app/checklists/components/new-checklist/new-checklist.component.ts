@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core'
 // TODO: Not direct list import
 import { DEFAULT_QUESTIONS } from 'src/app/constants/template'
 
-import { ChecklistForm } from '../../components/new-checklist-form/new-checklist-form.component'
+import { ChecklistForm } from './new-checklist-ui.component'
 
 @Component({
-  templateUrl: './new-checklist-container.component.html',
-  styleUrls: ['./new-checklist-container.component.scss']
+  templateUrl: './new-checklist.component.html',
+  styleUrls: ['./new-checklist.component.scss']
 })
-export class NewChecklistContainerComponent implements OnInit {
+export class NewChecklistComponent implements OnInit {
 
   list: string[] = []
 

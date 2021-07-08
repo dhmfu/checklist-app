@@ -11,12 +11,12 @@ export interface ChecklistForm {
 }
 
 @Component({
-  selector: 'app-new-checklist-form',
-  templateUrl: './new-checklist-form.component.html',
-  styleUrls: ['./new-checklist-form.component.scss'],
+  selector: 'app-new-checklist-ui',
+  templateUrl: './new-checklist-ui.component.html',
+  styleUrls: ['./new-checklist-ui.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NewChecklistFormComponent implements OnChanges {
+export class NewChecklistUiComponent implements OnChanges {
 
   @Input() list: string[] = []
 

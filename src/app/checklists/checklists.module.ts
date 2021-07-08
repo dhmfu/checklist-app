@@ -8,20 +8,18 @@ import { MatInputModule } from '@angular/material/input'
 
 import { MaterialModule } from '../shared/material/material.module'
 
-import { ChecklistsComponent } from './checklists.component'
-import { NewChecklistContainerComponent } from './containers/new-checklist-container/new-checklist-container.component'
-import { NewChecklistFormComponent } from './components/new-checklist-form/new-checklist-form.component'
+import { NewChecklistComponent } from './components/new-checklist/new-checklist.component'
+import { NewChecklistUiComponent } from './components/new-checklist/new-checklist-ui.component'
 
 const routes: Routes = [
-  { path: 'new', component: NewChecklistContainerComponent },
+  { path: 'new', component: NewChecklistComponent },
   { path: '', redirectTo: 'new', pathMatch: 'full' }
 ]
 
 @NgModule({
   declarations: [
-    ChecklistsComponent,
-    NewChecklistContainerComponent,
-    NewChecklistFormComponent
+    NewChecklistComponent,
+    NewChecklistUiComponent
   ],
   imports: [
     CommonModule,
