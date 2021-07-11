@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 
-import { ChecklistsModule } from './checklists/checklists.module'
-
 const routes: Routes = [
-  { path: 'checklists', loadChildren: () => ChecklistsModule }
+  { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) }, // Will be auth-guarded in the future
 ]
 
 @NgModule({

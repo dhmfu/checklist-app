@@ -1,29 +1,23 @@
+import { NgModule } from '@angular/core'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { BrowserModule } from '@angular/platform-browser'
-import { NgModule } from '@angular/core'
 
-import { StoreModule } from '@ngrx/store'
-import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { CoreModule } from './core/core.module'
 
 import { AppRoutingModule } from './app.routing.module'
-
-import { LayoutModule } from './layout/layout.module'
 
 import { AppComponent } from './app.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}),
-    StoreDevtoolsModule.instrument(),
     AppRoutingModule,
-    LayoutModule
+    CoreModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
