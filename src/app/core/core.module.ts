@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { StoreRouterConnectingModule } from '@ngrx/router-store'
 
 import { MaterialModule } from '../shared/material/material.module'
 
@@ -23,6 +24,7 @@ import { coreReducers } from './store'
     CommonModule,
     RouterModule,
     StoreModule.forRoot(coreReducers),
+    StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument(),
     MaterialModule,
     MatToolbarModule,

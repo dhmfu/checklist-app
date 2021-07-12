@@ -13,13 +13,15 @@ import { NewChecklistUiComponent } from './components/new-checklist/new-checklis
 import { ChecklistsService } from './facade/checklists.service'
 
 import { ChecklistsRoutingModule } from './checklists.routing.module';
-import { ChecklistComponent } from './components/checklist/checklist.component'
+import { ChecklistComponent } from './components/checklist/checklist.component';
+import { ChecklistUiComponent } from './components/checklist/checklist-ui.component'
 
 @NgModule({
   declarations: [
     NewChecklistComponent,
     NewChecklistUiComponent,
-    ChecklistComponent
+    ChecklistComponent,
+    ChecklistUiComponent
   ],
   imports: [
     CommonModule,

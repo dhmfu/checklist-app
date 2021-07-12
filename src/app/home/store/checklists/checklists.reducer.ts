@@ -29,5 +29,3 @@ export const checklistsReducer = createReducer(
 function uniqueId(): string { // TODO: temporary function 
   return Date.now().toString()
 }
-
-export const checklistsFeatureKey = 'checklists'

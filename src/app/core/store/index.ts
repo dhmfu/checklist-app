@@ -1,3 +1,6 @@
+import { routerReducer } from "@ngrx/router-store"
+
+import { routerFeatureKey } from "./router"
 import { uiFeatureKey, UiState, uiReducer } from "./ui"
 
 export interface CoreState {
@@ -6,4 +9,5 @@ export interface CoreState {
 
 export const coreReducers = {
   [uiFeatureKey]: uiReducer,
+  [routerFeatureKey]: routerReducer
 }

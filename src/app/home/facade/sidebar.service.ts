@@ -5,8 +5,7 @@ import { Store } from '@ngrx/store'
 
 import { MenuItem } from '../models/menu-item.interface'
 
-import { selectAsMenuItems } from '../store'
-import { ChecklistsState } from '../store/checklists'
+import { ChecklistsState, selectAsMenuItems } from '../store/checklists'
 
 @Injectable()
 export class SidebarService {

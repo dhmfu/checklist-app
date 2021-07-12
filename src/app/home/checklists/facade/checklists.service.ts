@@ -7,7 +7,8 @@ import { DEFAULT_QUESTIONS } from '../../../constants/template'
 
 import { ChecklistForm } from '../../models/checklist-form.interface'
 
-import { ChecklistsState, createChecklist } from '../../store/checklists'
+import { ChecklistsState, createChecklist, selectChecklist } from '../../store/checklists'
+import { Checklist } from '../../models/checklist.interface'
 
 @Injectable()
 export class ChecklistsService {
@@ -16,6 +17,10 @@ export class ChecklistsService {
 
   createChecklist(data: ChecklistForm): void {
     this.store.dispatch(createChecklist(data))
+  }
+
+  getChecklist(): Observable<Checklist> {
+    return this.store.select(selectChecklist)
   }
 
   getDefaultQuestionList(): Observable<string[]> {
