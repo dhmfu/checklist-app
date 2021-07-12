@@ -10,6 +10,8 @@ import { StoreModule } from '@ngrx/store'
 import { HomeComponent } from './components/home/home.component'
 import { HomeUiComponent } from './components/home/home-ui.component'
 
+import { SidebarService } from './facade/sidebar.service'
+
 import { HomeRoutingModule } from './home.routing.module'
 import { homeFeatureKey, homeReducers } from './store'
 
@@ -25,6 +27,9 @@ import { homeFeatureKey, homeReducers } from './store'
     RouterModule,
     MatListModule,
     MatSidenavModule
-  ]
+  ],
+   providers: [
+     SidebarService
+   ]
 })
 export class HomeModule { }

@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
+import { MenuItem } from '../../models/menu-item.interface'
 
 @Component({
   selector: 'app-home-ui',
@@ -8,6 +9,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
 })
 export class HomeUiComponent {
 
+  @Input() menuItems: MenuItem[] = []
   @Input() menuVisible = false
 
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ReactiveFormsModule } from '@angular/forms'
-import { Routes, RouterModule } from '@angular/router'
 
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
@@ -13,24 +12,22 @@ import { NewChecklistUiComponent } from './components/new-checklist/new-checklis
 
 import { ChecklistsService } from './facade/checklists.service'
 
-const routes: Routes = [
-  { path: 'new', component: NewChecklistComponent },
-  { path: '', redirectTo: 'new', pathMatch: 'full' }
-]
-// TODO: routing module
+import { ChecklistsRoutingModule } from './checklists.routing.module';
+import { ChecklistComponent } from './components/checklist/checklist.component'
 
 @NgModule({
   declarations: [
     NewChecklistComponent,
-    NewChecklistUiComponent
+    NewChecklistUiComponent,
+    ChecklistComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MaterialModule
+    MaterialModule,
+    ChecklistsRoutingModule
   ],
   providers: [
     ChecklistsService

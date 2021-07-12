@@ -1,7 +1,8 @@
 import { Component } from '@angular/core'
-import { Observable } from 'rxjs'
 
 import { LayoutStateService } from '../../../core/facade/layout-state.service'
+
+import { SidebarService } from '../../facade/sidebar.service'
 
 @Component({
   templateUrl: './home.component.html',
@@ -9,8 +10,9 @@ import { LayoutStateService } from '../../../core/facade/layout-state.service'
 })
 export class HomeComponent {
 
-  menuVisible$: Observable<boolean> = this.layoutState.getMenuVisible()
+  menuVisible$ = this.layoutState.getMenuVisible()
+  menuItems$ = this.sidebarService.getMenuItems()
 
-  constructor(private layoutState: LayoutStateService) {}
+  constructor(private layoutState: LayoutStateService, private sidebarService: SidebarService) {}
 
 }
