@@ -5,14 +5,14 @@ import { Store } from '@ngrx/store'
 
 import { DEFAULT_QUESTIONS } from '../../../constants/template'
 
-import { ChecklistForm } from '../../models/checklist-form.interface'
-
-import { ChecklistsState, createChecklist, selectChecklist } from '../../store/checklists'
 import { Checklist } from '../../models/checklist.interface'
+import { ChecklistForm } from '../../models/checklist-form.interface'
+import { ToggleChecklistQuestion } from '../../models/events/toggle-question.interface'
+
+import { ChecklistsState, createChecklist, selectRoutedChecklist, toggleQuestion } from '../../store/checklists'
 
 @Injectable()
 export class ChecklistsService {
-
   constructor(private store: Store<ChecklistsState>) {}
 
   createChecklist(data: ChecklistForm): void {
@@ -20,10 +20,14 @@ export class ChecklistsService {
   }
 
   getChecklist(): Observable<Checklist> {
-    return this.store.select(selectChecklist)
+    return this.store.select(selectRoutedChecklist)
   }
 
   getDefaultQuestionList(): Observable<string[]> {
     return of(DEFAULT_QUESTIONS) // TODO: still gonna be moved one layer up, this data has to be fetched from core level
+  }
+
+  toggleQuestion(event: ToggleChecklistQuestion): void {
+    this.store.dispatch(toggleQuestion(event))
   }
 }

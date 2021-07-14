@@ -13,7 +13,7 @@ export const selectAsMenuItems = createSelector(
   state => Object.values(state).map(({ name, id }) => ({ name, id }))
 )
 
-export const selectChecklist = createSelector(
+export const selectRoutedChecklist = createSelector(
   selectChecklists,
   selectRouteParams,
   (checkliststState, routeParams) => {

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ReactiveFormsModule } from '@angular/forms'
 
+import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 
@@ -12,8 +13,8 @@ import { NewChecklistUiComponent } from './components/new-checklist/new-checklis
 
 import { ChecklistsService } from './facade/checklists.service'
 
-import { ChecklistsRoutingModule } from './checklists.routing.module';
-import { ChecklistComponent } from './components/checklist/checklist.component';
+import { ChecklistsRoutingModule } from './checklists.routing.module'
+import { ChecklistComponent } from './components/checklist/checklist.component'
 import { ChecklistUiComponent } from './components/checklist/checklist-ui.component'
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ChecklistUiComponent } from './components/checklist/checklist-ui.compon
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCheckboxModule,
     MaterialModule,
     ChecklistsRoutingModule
   ],

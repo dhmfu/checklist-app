@@ -1,1 +1,1 @@
-<app-checklist-ui [checklist]="(checklist$ | async)!"></app-checklist-ui>
+<app-checklist-ui [checklist]="(checklist$ | async)!" (questionToggled)="onQuestionToggled($event)"></app-checklist-ui>

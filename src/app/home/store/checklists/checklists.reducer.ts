@@ -2,7 +2,7 @@ import { createReducer, on } from "@ngrx/store"
 
 import { Checklist } from "../../models/checklist.interface"
 
-import { createChecklist } from "./checklists.actions"
+import { createChecklist, toggleQuestion } from "./checklists.actions"
 
 export interface ChecklistsState {
   [id: string]: Checklist
@@ -22,6 +22,21 @@ export const checklistsReducer = createReducer(
         name: action.name,
         questions: action.questions.map(question => ({ checked: false, term: question }))
       }
+    }
+  }),
+  on(toggleQuestion, (state, action) => {
+    const checklist = state[action.id]
+    const newChecklistQuestions = checklist.questions.map((question, i) => {
+      if (i === action.index) {
+        return { ...question, checked: action.checked }
+      }
+      
+      return question
+    })
+
+    return {
+      ...state,
+      [action.id]: { ...checklist, questions: newChecklistQuestions }
     }
   })
 )

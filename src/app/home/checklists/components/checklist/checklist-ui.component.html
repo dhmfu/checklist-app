@@ -1,1 +1,6 @@
-<p>{{ checklist | json }}</p>
+<h1>{{ checklist.name }}</h1>
+<div *ngFor="let question of checklist.questions; index as i; trackBy: trackQuestionsBy">
+  <mat-checkbox color="primary" [checked]="question.checked" (change)="onChange($event.checked, i)">
+    {{ question.term }}
+  </mat-checkbox>
+</div>
