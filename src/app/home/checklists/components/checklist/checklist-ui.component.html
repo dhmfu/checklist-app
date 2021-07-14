@@ -1,6 +1,15 @@
 <h1>{{ checklist.name }}</h1>
-<div *ngFor="let question of checklist.questions; index as i; trackBy: trackQuestionsBy">
+<mat-action-list>
+  <mat-checkbox *ngFor="let question of checklist.questions; index as i; trackBy: trackQuestionsBy"
+                color="primary"
+                mat-list-item
+                [checked]="question.checked"
+                (change)="onChange($event.checked, i)">
+    {{ question.term }}
+  </mat-checkbox>
+</mat-action-list>
+<!-- <div *ngFor="let question of checklist.questions; index as i; trackBy: trackQuestionsBy">
   <mat-checkbox color="primary" [checked]="question.checked" (change)="onChange($event.checked, i)">
     {{ question.term }}
   </mat-checkbox>
-</div>
+</div> -->

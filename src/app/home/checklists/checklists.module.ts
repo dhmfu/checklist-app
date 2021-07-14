@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
+import { MatListModule } from '@angular/material/list'
 
 import { MaterialModule } from '../../shared/material/material.module'
 
@@ -30,6 +31,7 @@ import { ChecklistUiComponent } from './components/checklist/checklist-ui.compon
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
+    MatListModule,
     MaterialModule,
     ChecklistsRoutingModule
   ],
