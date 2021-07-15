@@ -11,6 +11,7 @@ import { localStorageSync } from 'ngrx-store-localstorage'
 
 import { MaterialModule } from '../shared/material/material.module'
 
+import { BodyComponent } from './components/body/body.component'
 import { NavbarComponent } from './components/navbar/navbar.component'
 import { NavbarUiComponent } from './components/navbar/navbar-ui.component'
 
@@ -27,7 +28,8 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
 @NgModule({
   declarations: [
     NavbarComponent,
-    NavbarUiComponent
+    NavbarUiComponent,
+    BodyComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
     MatToolbarModule,
   ],
   exports: [
-    NavbarComponent
+    NavbarComponent,
+    BodyComponent
   ]
 })
 export class CoreModule { }

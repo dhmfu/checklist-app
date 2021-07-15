@@ -7,7 +7,7 @@ import { DEFAULT_QUESTIONS } from '../../../constants/template'
 
 import { Checklist } from '../../models/checklist.interface'
 import { ChecklistForm } from '../../models/checklist-form.interface'
-import { ToggleChecklistQuestion } from '../../models/events/toggle-question.interface'
+import { ToggleQuestion } from '../../models/events/toggle-question.interface'
 
 import { ChecklistsState, createChecklist, selectRoutedChecklist, toggleQuestion } from '../../store/checklists'
 
@@ -27,7 +27,7 @@ export class ChecklistsService {
     return of(DEFAULT_QUESTIONS) // TODO: still gonna be moved one layer up, this data has to be fetched from core level
   }
 
-  toggleQuestion(event: ToggleChecklistQuestion): void {
+  toggleQuestion(event: ToggleQuestion): void {
     this.store.dispatch(toggleQuestion(event))
   }
 }

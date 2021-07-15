@@ -1,4 +1,7 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
+import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output } from '@angular/core'
+
+import { MatDrawerMode } from '@angular/material/sidenav'
+
 import { MenuItem } from '../../models/menu-item.interface'
 
 @Component({
@@ -8,8 +11,13 @@ import { MenuItem } from '../../models/menu-item.interface'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeUiComponent {
-
   @Input() menuItems: MenuItem[] = []
   @Input() menuVisible = false
+  @Input() sidenavMode: MatDrawerMode = 'side'
+  
+  @Output() backdropClicked = new EventEmitter<void>()
 
+  onBackdropClicked(): void {
+    this.backdropClicked.emit()
+  }
 }

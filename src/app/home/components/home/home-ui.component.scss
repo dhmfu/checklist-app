@@ -2,14 +2,15 @@ mat-sidenav-container {
   height: 100%;
 
   mat-sidenav {
-      width: 150px;
-
-      @media only screen and (max-width: 700px) {
-          width: 120px;
-      }
+    width: 200px;
   }
 
   mat-sidenav-content {
-      padding: 10px;
+    box-sizing: border-box;
+    padding: 10px;
+
+    @media only screen and (max-width: 700px) {
+      padding: 10px 20px;
+    }
   }
 }

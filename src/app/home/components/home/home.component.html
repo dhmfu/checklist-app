@@ -1,2 +1,5 @@
-<app-home-ui [menuVisible]="(menuVisible$ | async) || false" [menuItems]="(menuItems$ | async) || []">
+<app-home-ui [menuVisible]="(menuVisible$ | async)!"
+             [menuItems]="(menuItems$ | async)!"
+             [sidenavMode]="(sidenavMode$ | async)!"
+             (backdropClicked)="onBackdropClicked()">
 </app-home-ui>

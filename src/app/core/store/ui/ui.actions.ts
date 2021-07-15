@@ -1,3 +1,7 @@
-import { createAction } from "@ngrx/store"
+import { createAction, props } from "@ngrx/store"
 
-export const toggleMenu = createAction('[UI] Toggle Menu')
+const UI_ACTION_TAG = 'UI'
+
+export const toggleMenu = createAction(`[${UI_ACTION_TAG}] Toggle Menu`)
+
+export const setNavbarHeight = createAction(`[${UI_ACTION_TAG}] Set Navbar height`, props<{ height: number }>())

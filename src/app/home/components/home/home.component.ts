@@ -9,10 +9,13 @@ import { SidebarService } from '../../facade/sidebar.service'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
   menuVisible$ = this.layoutState.getMenuVisible()
   menuItems$ = this.sidebarService.getMenuItems()
+  sidenavMode$ = this.layoutState.resolveModeForSidenav()
 
   constructor(private layoutState: LayoutStateService, private sidebarService: SidebarService) {}
 
+  onBackdropClicked(): void {
+    this.layoutState.toggleMenu()
+  }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
 
 import { Checklist } from '../../../models/checklist.interface'
-import { ToggleChecklistQuestion } from '../../../models/events/toggle-question.interface'
+import { ToggleQuestion } from '../../../models/events/toggle-question.interface'
 
 import { ChecklistsService } from '../../facade/checklists.service'
 
@@ -19,7 +19,7 @@ export class ChecklistComponent implements OnInit {
     this.checklist$ = this.checklistsService.getChecklist()
   }
 
-  onQuestionToggled(event: ToggleChecklistQuestion): void {
+  onQuestionToggled(event: ToggleQuestion): void {
     this.checklistsService.toggleQuestion(event)
   }
 }

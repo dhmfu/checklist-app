@@ -8,5 +8,10 @@ export const selectUiFeature = createFeatureSelector<CoreState, UiState>(uiFeatu
 
 export const selectMenuVisible = createSelector(
   selectUiFeature,
-  (state: UiState) => state.menuVisible
+  state => state.menuVisible
+)
+
+export const selectNavbarHeight = createSelector(
+  selectUiFeature,
+  state => state.navbarHeight
 )

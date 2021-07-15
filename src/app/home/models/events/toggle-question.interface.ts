@@ -1,4 +1,4 @@
-export interface ToggleChecklistQuestion {
+export interface ToggleQuestion {
   checked: boolean
   index: number
   id: string
