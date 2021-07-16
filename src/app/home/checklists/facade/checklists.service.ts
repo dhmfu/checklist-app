@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
 import { Observable, of } from 'rxjs'
+import { take } from 'rxjs/operators'
 
 import { Store } from '@ngrx/store'
 
@@ -9,14 +11,18 @@ import { Checklist } from '../../models/checklist.interface'
 import { ChecklistForm } from '../../models/checklist-form.interface'
 import { ToggleQuestion } from '../../models/events/toggle-question.interface'
 
-import { ChecklistsState, createChecklist, selectRoutedChecklist, toggleQuestion } from '../../store/checklists'
+import { ChecklistsState, createChecklist, selectAsMenuItems, selectRoutedChecklist, toggleQuestion } from '../../store/checklists'
 
 @Injectable()
 export class ChecklistsService {
-  constructor(private store: Store<ChecklistsState>) {}
+  constructor(private store: Store<ChecklistsState>, private router: Router) {}
 
   createChecklist(data: ChecklistForm): void {
     this.store.dispatch(createChecklist(data))
+
+    this.store.select(selectAsMenuItems).pipe(take(1)).subscribe((items) => {
+      this.router.navigate(['checklists', items[items.length - 1].id])
+    })
   }
 
   getChecklist(): Observable<Checklist> {

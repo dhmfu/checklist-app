@@ -13,7 +13,6 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewChecklistUiComponent implements OnChanges {
-
   @Input() list: string[] = []
 
   checklistForm: FormGroup
@@ -44,5 +43,4 @@ export class NewChecklistUiComponent implements OnChanges {
       this.create.emit(this.checklistForm.value)
     }
   }
-
 }

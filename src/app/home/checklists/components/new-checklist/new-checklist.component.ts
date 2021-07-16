@@ -9,7 +9,6 @@ import { ChecklistForm } from '../../../models/checklist-form.interface'
   styleUrls: ['./new-checklist.component.scss']
 })
 export class NewChecklistComponent {
-
   list$ = this.checklistsService.getDefaultQuestionList()
 
   constructor(private checklistsService: ChecklistsService) {}
@@ -17,5 +16,4 @@ export class NewChecklistComponent {
   onCreate(formValue: ChecklistForm): void {
     this.checklistsService.createChecklist(formValue)
   }
-
 }
