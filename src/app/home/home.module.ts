@@ -10,7 +10,7 @@ import { StoreModule } from '@ngrx/store'
 import { HomeComponent } from './components/home/home.component'
 import { HomeUiComponent } from './components/home/home-ui.component'
 
-import { SidebarService } from './facade/sidebar.service'
+import { SidenavService } from './facade/sidenav.service'
 
 import { HomeRoutingModule } from './home.routing.module'
 import { homeFeatureKey, homeReducers } from './store'
@@ -29,7 +29,7 @@ import { homeFeatureKey, homeReducers } from './store'
     MatSidenavModule
   ],
    providers: [
-     SidebarService
+     SidenavService
    ]
 })
 export class HomeModule { }

@@ -1,15 +1,22 @@
+@import '../../../../styles.scss';
+
 mat-sidenav-container {
   height: 100%;
 
   mat-sidenav {
     width: 200px;
+
+    a.active {
+      color: $primary;
+      font-weight: 500;
+    }
   }
 
   mat-sidenav-content {
     box-sizing: border-box;
     padding: 10px;
 
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 599.98px) {
       padding: 10px 20px;
     }
   }

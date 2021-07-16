@@ -1,9 +1,10 @@
 <mat-sidenav-container (backdropClick)="onBackdropClicked()">
-    <mat-sidenav [disableClose]="true" [mode]="sidenavMode" [opened]="menuVisible">
+    <mat-sidenav [disableClose]="true" [mode]="sidenavMode" [opened]="menuVisible" [autoFocus]="false">
         <mat-nav-list>
-            <a mat-list-item routerLink="checklists/new">Новий список</a>
-            <ng-container *ngFor="let item of menuItems">
-                <a mat-list-item [routerLink]="['checklists', item.id]">{{item.name}}</a>
+            <ng-container *ngFor="let item of _menuItems">
+                <a mat-list-item [routerLink]="['checklists', item.id]" routerLinkActive="active" (click)="onLinkClick()">
+                    {{item.name}}
+                </a>
             </ng-container>
         </mat-nav-list>
     </mat-sidenav>

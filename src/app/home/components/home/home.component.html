@@ -1,5 +1,6 @@
 <app-home-ui [menuVisible]="(menuVisible$ | async)!"
              [menuItems]="(menuItems$ | async)!"
              [sidenavMode]="(sidenavMode$ | async)!"
-             (backdropClicked)="onBackdropClicked()">
+             (backdropClicked)="onBackdropClicked()"
+             (linkClicked)="onLinkClicked()">
 </app-home-ui>

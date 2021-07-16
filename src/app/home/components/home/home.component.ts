@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 
 import { LayoutStateService } from '../../../core/facade/layout-state.service'
 
-import { SidebarService } from '../../facade/sidebar.service'
+import { SidenavService } from '../../facade/sidenav.service'
 
 @Component({
   templateUrl: './home.component.html',
@@ -10,12 +10,16 @@ import { SidebarService } from '../../facade/sidebar.service'
 })
 export class HomeComponent {
   menuVisible$ = this.layoutState.getMenuVisible()
-  menuItems$ = this.sidebarService.getMenuItems()
-  sidenavMode$ = this.layoutState.resolveModeForSidenav()
+  menuItems$ = this.sidenavService.getMenuItems()
+  sidenavMode$ = this.sidenavService.resolveMode()
 
-  constructor(private layoutState: LayoutStateService, private sidebarService: SidebarService) {}
+  constructor(private layoutState: LayoutStateService, private sidenavService: SidenavService) {}
 
   onBackdropClicked(): void {
     this.layoutState.toggleMenu()
+  }
+
+  onLinkClicked(): void {
+    this.sidenavService.linkClicked()
   }
 }

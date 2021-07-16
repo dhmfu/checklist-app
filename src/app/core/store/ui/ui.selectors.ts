@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store"
 
-import { CoreState } from ".."
+import { CoreState } from "../core.state" 
 
 import { uiFeatureKey, UiState } from "./ui.reducer"
 
@@ -14,4 +14,9 @@ export const selectMenuVisible = createSelector(
 export const selectNavbarHeight = createSelector(
   selectUiFeature,
   state => state.navbarHeight
+)
+
+export const selectIsSmallScreen = createSelector(
+  selectUiFeature,
+  state => state.isSmallScreen
 )
