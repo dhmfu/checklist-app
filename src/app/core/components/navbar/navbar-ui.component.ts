@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core'
+import { Component, ChangeDetectionStrategy, EventEmitter, Output, Input } from '@angular/core'
 
 @Component({
   selector: 'app-navbar-ui',
@@ -7,5 +7,6 @@ import { Component, ChangeDetectionStrategy, EventEmitter, Output } from '@angul
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarUiComponent {
+  @Input() title = ''
   @Output() toggleMenu = new EventEmitter<void>()
 }

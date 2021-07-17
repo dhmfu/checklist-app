@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { BrowserModule } from '@angular/platform-browser'
+import { BrowserModule, Title } from '@angular/platform-browser'
 
 import { CoreModule } from './core/core.module'
 
@@ -18,6 +18,7 @@ import { AppComponent } from './app.component'
     AppRoutingModule,
     CoreModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [Title]
 })
 export class AppModule { }

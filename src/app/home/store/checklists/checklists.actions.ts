@@ -1,13 +1,13 @@
 import { createAction, props } from "@ngrx/store"
 
-import { ChecklistForm } from "../../models/checklist-form.interface"
+import { ChecklistFormData } from "../../models/checklist-form.interface"
 import { ToggleQuestion } from "../../models/events/toggle-question.interface"
 
 const CHECKLISTS_ACTION_TAG = 'Checklists'
 
 export const createChecklist = createAction(
   `[${CHECKLISTS_ACTION_TAG}] Create checklist`,
-  props<ChecklistForm>()
+  props<ChecklistFormData>()
 )
 
 export const toggleQuestion = createAction(

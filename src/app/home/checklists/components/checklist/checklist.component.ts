@@ -4,7 +4,7 @@ import { Observable } from 'rxjs'
 import { Checklist } from '../../../models/checklist.interface'
 import { ToggleQuestion } from '../../../models/events/toggle-question.interface'
 
-import { ChecklistsService } from '../../facade/checklists.service'
+import { ChecklistsFacadeService } from '../../facade/checklists-facade.service'
 
 @Component({
   templateUrl: './checklist.component.html',
@@ -13,7 +13,7 @@ import { ChecklistsService } from '../../facade/checklists.service'
 export class ChecklistComponent implements OnInit {
   checklist$!: Observable<Checklist>
 
-  constructor(private checklistsService: ChecklistsService) {}
+  constructor(private checklistsService: ChecklistsFacadeService) {}
 
   ngOnInit(): void {
     this.checklist$ = this.checklistsService.getChecklist()

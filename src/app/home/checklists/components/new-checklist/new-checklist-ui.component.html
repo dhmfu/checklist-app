@@ -6,7 +6,7 @@
   </mat-form-field>
   <ng-container formArrayName="questions">
     <mat-form-field appearance="standard"*ngFor="let questionInput of questions.controls; index as i">
-      <textarea matInput [formControlName]="i" cdkTextareaAutosize></textarea>
+      <textarea matInput [formControlName]="i" cdkTextareaAutosize placeholder="Питання"></textarea>
     </mat-form-field>
   </ng-container>
   <button type="submit" mat-button color="primary" [disabled]="checklistForm.invalid">Зберегти</button>

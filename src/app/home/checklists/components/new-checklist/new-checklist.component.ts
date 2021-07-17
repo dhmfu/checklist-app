@@ -1,19 +1,19 @@
 import { Component } from '@angular/core'
 
-import { ChecklistsService } from '../../facade/checklists.service'
+import { ChecklistsFacadeService } from '../../facade/checklists-facade.service'
 
-import { ChecklistForm } from '../../../models/checklist-form.interface'
+import { ChecklistFormData } from '../../../models/checklist-form.interface'
 
 @Component({
   templateUrl: './new-checklist.component.html',
   styleUrls: ['./new-checklist.component.scss']
 })
 export class NewChecklistComponent {
-  list$ = this.checklistsService.getDefaultQuestionList()
+  list$ = this.checklistsService.getQuestionList()
 
-  constructor(private checklistsService: ChecklistsService) {}
+  constructor(private checklistsService: ChecklistsFacadeService) {}
 
-  onCreate(formValue: ChecklistForm): void {
+  onCreate(formValue: ChecklistFormData): void {
     this.checklistsService.createChecklist(formValue)
   }
 }

@@ -12,9 +12,12 @@ import { MaterialModule } from '../../shared/material/material.module'
 import { NewChecklistComponent } from './components/new-checklist/new-checklist.component'
 import { NewChecklistUiComponent } from './components/new-checklist/new-checklist-ui.component'
 
-import { ChecklistsService } from './facade/checklists.service'
+import { ChecklistsFacadeService } from './facade/checklists-facade.service'
+
+import { ChecklistsService } from './services/checklists.service'
 
 import { ChecklistsRoutingModule } from './checklists.routing.module'
+
 import { ChecklistComponent } from './components/checklist/checklist.component'
 import { ChecklistUiComponent } from './components/checklist/checklist-ui.component'
 
@@ -36,6 +39,7 @@ import { ChecklistUiComponent } from './components/checklist/checklist-ui.compon
     ChecklistsRoutingModule
   ],
   providers: [
+    ChecklistsFacadeService,
     ChecklistsService
   ]
 })

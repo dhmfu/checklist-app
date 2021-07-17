@@ -1,10 +1,9 @@
 import { Component, ChangeDetectionStrategy, Input, OnChanges, Output, EventEmitter } from '@angular/core'
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
 
-// TODO: implement ChecklistForm interface type-check
-// TODO: implement placeholder(s) for questions
+import { ChecklistFormData, ChecklistFormControls } from '../../../models/checklist-form.interface'
+
 // TODO: implement order change
-// TODO: implement name validation
 
 @Component({
   selector: 'app-new-checklist-ui',
@@ -21,13 +20,15 @@ export class NewChecklistUiComponent implements OnChanges {
     return this.checklistForm.get('questions') as FormArray
   }
 
-  @Output() create = new EventEmitter()
+  @Output() create = new EventEmitter<ChecklistFormData>()
 
   constructor(private fb: FormBuilder) {
-    this.checklistForm = this.fb.group({
+    const groupConfig: ChecklistFormControls = {
       name: this.fb.control('', [Validators.required, Validators.minLength(5)]),
       questions: this.fb.array([])
-    })
+    }
+
+    this.checklistForm = this.fb.group(groupConfig)
   }
 
   ngOnChanges(): void {

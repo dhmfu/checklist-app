@@ -1,23 +1,27 @@
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable, of } from 'rxjs'
+import { Observable } from 'rxjs'
 import { take } from 'rxjs/operators'
 
 import { Store } from '@ngrx/store'
 
-import { DEFAULT_QUESTIONS } from '../../../constants/template'
-
 import { Checklist } from '../../models/checklist.interface'
-import { ChecklistForm } from '../../models/checklist-form.interface'
+import { ChecklistFormData } from '../../models/checklist-form.interface'
 import { ToggleQuestion } from '../../models/events/toggle-question.interface'
 
 import { ChecklistsState, createChecklist, selectAsMenuItems, selectRoutedChecklist, toggleQuestion } from '../../store/checklists'
 
-@Injectable()
-export class ChecklistsService {
-  constructor(private store: Store<ChecklistsState>, private router: Router) {}
+import { ChecklistsService } from '../services/checklists.service'
 
-  createChecklist(data: ChecklistForm): void {
+@Injectable()
+export class ChecklistsFacadeService {
+  constructor(
+    private store: Store<ChecklistsState>,
+    private router: Router,
+    private checklistsService: ChecklistsService
+  ) {}
+
+  createChecklist(data: ChecklistFormData): void {
     this.store.dispatch(createChecklist(data))
 
     this.store.select(selectAsMenuItems).pipe(take(1)).subscribe((items) => {
@@ -29,8 +33,8 @@ export class ChecklistsService {
     return this.store.select(selectRoutedChecklist)
   }
 
-  getDefaultQuestionList(): Observable<string[]> {
-    return of(DEFAULT_QUESTIONS) // TODO: still gonna be moved one layer up, this data has to be fetched from core level
+  getQuestionList(): Observable<string[]> {
+    return this.checklistsService.getDefaultQuestionList()
   }
 
   toggleQuestion(event: ToggleQuestion): void {

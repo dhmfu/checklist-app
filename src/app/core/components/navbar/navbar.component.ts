@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core'
+import { Title } from '@angular/platform-browser'
 import { fromEvent } from 'rxjs'
 import { distinctUntilChanged, map } from 'rxjs/operators'
 
@@ -9,10 +10,12 @@ import { LayoutStateService } from '../../facade/layout-state.service'
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements AfterViewInit {
+export class NavbarComponent implements AfterViewInit, OnInit {
+  title = ''
+
   @ViewChild('ui', { static: true, read: ElementRef }) ui!: ElementRef<HTMLElement>
 
-  constructor(private layoutService: LayoutStateService){}
+  constructor(private layoutService: LayoutStateService, private titleService: Title){}
 
   onToggleMenu(): void {
     this.layoutService.toggleMenu()
@@ -31,5 +34,9 @@ export class NavbarComponent implements AfterViewInit {
         this.layoutService.setNavbarHeight(height)
       })
     }
+  }
+
+  ngOnInit(): void {
+    this.title = this.titleService.getTitle()
   }
 }
