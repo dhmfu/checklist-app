@@ -14,9 +14,14 @@ export class ChecklistUiComponent {
   @Input() checklist!: Checklist
 
   @Output() questionToggled = new EventEmitter<ToggleQuestion>()
+  @Output() deleteChecklist = new EventEmitter<void>()
 
   onChange(checked: boolean, index: number): void {
     this.questionToggled.emit({ checked, index, id: this.checklist.id })
+  }
+
+  onDeleteClick(): void {
+    this.deleteChecklist.emit()
   }
 
   trackQuestionsBy(index: number, item: Question): string {

@@ -9,7 +9,14 @@ import { Checklist } from '../../models/checklist.interface'
 import { ChecklistFormData } from '../../models/checklist-form.interface'
 import { ToggleQuestion } from '../../models/events/toggle-question.interface'
 
-import { ChecklistsState, createChecklist, selectAsMenuItems, selectRoutedChecklist, toggleQuestion } from '../../store/checklists'
+import {
+  ChecklistsState,
+  createChecklist,
+  deleteChecklist,
+  selectAsMenuItems,
+  selectRoutedChecklist,
+  toggleQuestion
+} from '../../store/checklists'
 
 import { ChecklistsService } from '../services/checklists.service'
 
@@ -35,6 +42,12 @@ export class ChecklistsFacadeService {
 
   getQuestionList(): Observable<string[]> {
     return this.checklistsService.getDefaultQuestionList()
+  }
+
+  deleteChecklist(checklist: Checklist): void {
+    this.router.navigate(['checklists', 'new']).then(() => {
+      this.store.dispatch(deleteChecklist(checklist))
+    })
   }
 
   toggleQuestion(event: ToggleQuestion): void {

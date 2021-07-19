@@ -1,4 +1,9 @@
-<h1>{{ checklist.name }}</h1>
+<h1>
+  {{ checklist.name }}
+  <button mat-icon-button (click)="onDeleteClick()">
+    <mat-icon>delete_outline</mat-icon>
+  </button>
+</h1>
 <mat-action-list>
   <mat-checkbox *ngFor="let question of checklist.questions; index as i; trackBy: trackQuestionsBy"
                 color="primary"

@@ -1,8 +1,8 @@
 import { createAction, props } from "@ngrx/store"
 
 import { ChecklistFormData } from "../../models/checklist-form.interface"
+import { Checklist } from "../../models/checklist.interface"
 import { ToggleQuestion } from "../../models/events/toggle-question.interface"
-import { MenuItem } from "../../models/menu-item.interface"
 
 const CHECKLISTS_ACTION_TAG = 'Checklists'
 
@@ -16,7 +16,7 @@ export const toggleQuestion = createAction(
   props<ToggleQuestion>()
 )
 
-export const removeChecklist = createAction(
-  `[${CHECKLISTS_ACTION_TAG}] Remove checklist`,
-  props<MenuItem>()
+export const deleteChecklist = createAction(
+  `[${CHECKLISTS_ACTION_TAG}] Delete checklist`,
+  props<Checklist>()
 )

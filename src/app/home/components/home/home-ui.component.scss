@@ -6,30 +6,18 @@ mat-sidenav-container {
   mat-sidenav {
     width: 200px;
 
-    mat-list-item {
-      a.active {
-        color: $primary;
-        font-weight: 500;
-      }
-  
-      button.remove {
-        display: none;
-      }
-  
-      &:hover {
-        button.remove {
-          display: block;
-        }
-      }
+    a.active {
+      color: $primary;
+      font-weight: 500;
     }
   }
 
   mat-sidenav-content {
     box-sizing: border-box;
-    padding: 10px;
+    padding: 20px 10px 10px 10px;
 
     @media only screen and (max-width: 599.98px) {
-      padding: 10px 20px;
+      padding: 20px 20px 10px 20px;
     }
   }
 }
