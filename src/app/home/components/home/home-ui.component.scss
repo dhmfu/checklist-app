@@ -6,9 +6,21 @@ mat-sidenav-container {
   mat-sidenav {
     width: 200px;
 
-    a.active {
-      color: $primary;
-      font-weight: 500;
+    mat-list-item {
+      a.active {
+        color: $primary;
+        font-weight: 500;
+      }
+  
+      button.remove {
+        display: none;
+      }
+  
+      &:hover {
+        button.remove {
+          display: block;
+        }
+      }
     }
   }
 

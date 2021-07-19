@@ -25,6 +25,7 @@ export class HomeUiComponent {
   
   @Output() backdropClicked = new EventEmitter<void>()
   @Output() linkClicked = new EventEmitter<void>()
+  @Output() remove = new EventEmitter<MenuItem>()
 
   onBackdropClicked(): void {
     this.backdropClicked.emit()
@@ -32,5 +33,9 @@ export class HomeUiComponent {
 
   onLinkClick(): void {
     this.linkClicked.emit()
+  }
+
+  onRemoveClick(item: MenuItem): void {
+    this.remove.emit(item)
   }
 }

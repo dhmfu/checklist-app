@@ -2,7 +2,7 @@ import { createReducer, on } from "@ngrx/store"
 
 import { Checklist } from "../../models/checklist.interface"
 
-import { createChecklist, toggleQuestion } from "./checklists.actions"
+import { createChecklist, removeChecklist, toggleQuestion } from "./checklists.actions"
 
 export interface ChecklistsState {
   [id: string]: Checklist
@@ -38,6 +38,12 @@ export const checklistsReducer = createReducer(
       ...state,
       [action.id]: { ...checklist, questions: newChecklistQuestions }
     }
+  }),
+  on(removeChecklist, (state, action) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { [action.id]: removedChecklist, ...newState } = state
+
+    return newState
   })
 )
 
