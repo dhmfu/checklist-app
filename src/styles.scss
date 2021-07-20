@@ -1,7 +1,4 @@
-@import '~@angular/material/_theming.scss';
-@include mat-core();
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-$primary: mat-color(mat-palette($mat-indigo), 800);
+$primary: #3f51b5;
