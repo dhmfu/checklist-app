@@ -1,5 +1,7 @@
 # ChecklistApp
 
+Check it out at https://dhmfu.github.io/checklist-app
+
 ## Conventions and decistions
 
 The code of this project implements (or, at least, tries to) implement MVVM pattern on architecture level (see [below](#mvvm)) and 
