@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 
 import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 import { ActionReducer, StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
@@ -39,6 +40,7 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
     StoreDevtoolsModule.instrument(),
     MaterialModule,
     MatToolbarModule,
+    MatSnackBarModule
   ],
   exports: [
     NavbarComponent,

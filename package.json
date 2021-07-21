@@ -1,10 +1,10 @@
 {
   "name": "checklist-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --output-path docs --base-href /checklist-app/",
+    "build": "ng build --output-path docs --base-href \/checklist-app/",
     "test": "ng test"
   },
   "private": true,
