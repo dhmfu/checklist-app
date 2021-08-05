@@ -1,0 +1,6 @@
+<h1>Вхід</h1>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input type="email" placeholder="Пошта" formControlName="email">
+    <input type="password" placeholder="Пароль" formControlName="password">
+    <button type="submit" [disabled]="loginForm.invalid">Увійти</button>
+</form>
