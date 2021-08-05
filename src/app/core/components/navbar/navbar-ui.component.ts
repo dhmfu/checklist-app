@@ -7,7 +7,7 @@ import { Component, ChangeDetectionStrategy, EventEmitter, Output, Input } from 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarUiComponent {
+  @Input() isLoggedIn = false
   @Input() title = ''
-  @Output() logout = new EventEmitter<void>()
   @Output() toggleMenu = new EventEmitter<void>()
 }

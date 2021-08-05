@@ -1,5 +1,7 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store"
 
+import jwtDecode from "jwt-decode"
+
 import { CoreState } from "../core.state"
 
 import { authFeatureKey } from "./auth.feature-key"
@@ -10,6 +12,31 @@ export const selectAuthFeature = createFeatureSelector<CoreState, AuthState>(aut
 export const selectToken = createSelector(
   selectAuthFeature,
   state => state.jwt
+)
+
+export const selectUserName = createSelector(
+  selectToken,
+  jwtToken => {
+    let name = ''
+
+    
+    if (jwtToken) {
+      try {
+        const jwtDecoded = jwtDecode<{ name: string }>(jwtToken)
+
+        name = jwtDecoded.name
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    return name
+  }
+)
+
+export const selectLoggedIn = createSelector(
+  selectToken,
+  state => !!state
 )
 
 export const selectLoginLoading = createSelector(

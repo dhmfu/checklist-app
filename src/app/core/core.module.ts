@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
 
+import { MatMenuModule } from '@angular/material/menu'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 
@@ -15,6 +16,8 @@ import { localStorageSync } from 'ngrx-store-localstorage'
 
 import { MaterialModule } from '../shared/material/material.module'
 
+import { AccountComponent } from './components/account/account.component'
+import { AccountUiComponent } from './components/account/account-ui.component'
 import { BodyComponent } from './components/body/body.component'
 import { NavbarComponent } from './components/navbar/navbar.component'
 import { NavbarUiComponent } from './components/navbar/navbar-ui.component'
@@ -38,7 +41,9 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
     NavbarUiComponent,
     BodyComponent,
     LoginComponent,
-    LoginUiComponent
+    LoginUiComponent,
+    AccountComponent,
+    AccountUiComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +53,7 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([AuthEffects]),
     MaterialModule,
+    MatMenuModule,
     MatToolbarModule,
     MatSnackBarModule,
     HttpClientModule,

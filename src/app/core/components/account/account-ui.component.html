@@ -1,0 +1,8 @@
+<button mat-stroked-button [matMenuTriggerFor]="menu">Привіт, {{ name }}!</button>
+
+<mat-menu #menu="matMenu" xPosition="before">
+    <button mat-menu-item (click)="logout.emit()" >
+        <mat-icon>logout</mat-icon>
+        <span>Вийти</span>
+    </button>
+</mat-menu>

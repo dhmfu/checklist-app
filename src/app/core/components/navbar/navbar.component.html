@@ -1,1 +1,5 @@
-<app-navbar-ui #ui [title]="title" (toggleMenu)="onToggleMenu()" (logout)="onLogout()"></app-navbar-ui>
+<app-navbar-ui #ui
+               [title]="title"
+               [isLoggedIn]="(isLoggedIn$ | async)!"
+               (toggleMenu)="onToggleMenu()">
+</app-navbar-ui>

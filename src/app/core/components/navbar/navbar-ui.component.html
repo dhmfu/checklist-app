@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button aria-label="Toggle sidenav" (click)="toggleMenu.emit()">
+    <button *ngIf="isLoggedIn" mat-icon-button aria-label="Toggle sidenav" (click)="toggleMenu.emit()">
         <mat-icon>menu</mat-icon>
     </button>
     <span>{{ title }}</span>
     <span class="spacer"></span>
-    <button mat-button (click)="logout.emit()">Logout</button>
+    <app-account *ngIf="isLoggedIn"></app-account>
 </mat-toolbar>

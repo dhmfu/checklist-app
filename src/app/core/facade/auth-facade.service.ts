@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store'
 
 import { LoginCredentials } from '../models/credentials'
 
-import { login, logout, selectLoginLoading } from '../store/auth'
+import { login, logout, selectLoggedIn, selectLoginLoading, selectUserName } from '../store/auth'
 import { CoreState } from '../store'
 
 @Injectable({
@@ -13,6 +13,14 @@ import { CoreState } from '../store'
 })
 export class AuthFacadeService {
   constructor(private store: Store<CoreState>) {}
+
+  getUserName(): Observable<string> {
+    return this.store.select(selectUserName)
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.store.select(selectLoggedIn)
+  }
 
   isLoginLoading(): Observable<boolean> {
     return this.store.select(selectLoginLoading)

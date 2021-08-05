@@ -12,6 +12,7 @@ import { LayoutStateService } from '../../facade/layout-state.service'
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements AfterViewInit, OnInit {
+  isLoggedIn$ = this.authFacade.isLoggedIn()
   title = ''
 
   @ViewChild('ui', { static: true, read: ElementRef }) ui!: ElementRef<HTMLElement>
@@ -21,10 +22,6 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     private titleService: Title,
     private authFacade: AuthFacadeService
   ){}
-
-  onLogout(): void {
-    this.authFacade.logout()
-  }
 
   onToggleMenu(): void {
     this.layoutService.toggleMenu()
