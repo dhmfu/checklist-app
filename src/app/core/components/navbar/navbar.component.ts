@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser'
 import { fromEvent } from 'rxjs'
 import { distinctUntilChanged, map } from 'rxjs/operators'
 
+import { AuthFacadeService } from '../../facade/auth-facade.service'
 import { LayoutStateService } from '../../facade/layout-state.service'
 
 @Component({
@@ -15,7 +16,15 @@ export class NavbarComponent implements AfterViewInit, OnInit {
 
   @ViewChild('ui', { static: true, read: ElementRef }) ui!: ElementRef<HTMLElement>
 
-  constructor(private layoutService: LayoutStateService, private titleService: Title){}
+  constructor(
+    private layoutService: LayoutStateService,
+    private titleService: Title,
+    private authFacade: AuthFacadeService
+  ){}
+
+  onLogout(): void {
+    this.authFacade.logout()
+  }
 
   onToggleMenu(): void {
     this.layoutService.toggleMenu()

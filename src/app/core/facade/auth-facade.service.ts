@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store'
 
 import { LoginCredentials } from '../models/credentials'
 
-import { login, selectLoginLoading } from '../store/auth'
+import { login, logout, selectLoginLoading } from '../store/auth'
 import { CoreState } from '../store'
 
 @Injectable({
@@ -20,5 +20,9 @@ export class AuthFacadeService {
 
   login(credentials: LoginCredentials): void {
     this.store.dispatch(login(credentials))
+  }
+
+  logout(): void {
+    this.store.dispatch(logout())
   }
 }

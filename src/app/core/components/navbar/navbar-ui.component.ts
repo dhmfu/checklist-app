@@ -8,5 +8,6 @@ import { Component, ChangeDetectionStrategy, EventEmitter, Output, Input } from 
 })
 export class NavbarUiComponent {
   @Input() title = ''
+  @Output() logout = new EventEmitter<void>()
   @Output() toggleMenu = new EventEmitter<void>()
 }

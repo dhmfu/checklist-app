@@ -6,7 +6,7 @@ import { map, catchError, switchMap, tap } from 'rxjs/operators'
 
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 
-import { login, loginFailure, loginSuccess } from './auth.actions'
+import { login, loginFailure, loginSuccess, logout } from './auth.actions'
 import { AuthService } from '../../services/auth.service'
  
 @Injectable()
@@ -26,6 +26,13 @@ export class AuthEffects {
     ofType(loginSuccess.type),
     tap(() => {
       this.router.navigate([''])
+    })
+  ), { dispatch: false })
+
+  logout$ = createEffect(() => this.actions$.pipe(
+    ofType(logout.type),
+    tap(() => {
+      this.router.navigate(['login'])
     })
   ), { dispatch: false })
 

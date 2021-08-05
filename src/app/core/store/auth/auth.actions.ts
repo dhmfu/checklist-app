@@ -18,3 +18,7 @@ export const loginFailure = createAction(
   `[${AUTH_ACTION_TAG}] Login Failure`,
   props<{ error: string }>()
 )
+
+export const logout = createAction(
+  `[${AUTH_ACTION_TAG}] Logout`
+)
