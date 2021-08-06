@@ -14,8 +14,6 @@ import { NewChecklistUiComponent } from './components/new-checklist/new-checklis
 
 import { ChecklistsFacadeService } from './facade/checklists-facade.service'
 
-import { ChecklistsService } from './services/checklists.service'
-
 import { ChecklistsRoutingModule } from './checklists.routing.module'
 
 import { ChecklistComponent } from './components/checklist/checklist.component'
@@ -39,8 +37,7 @@ import { ChecklistUiComponent } from './components/checklist/checklist-ui.compon
     ChecklistsRoutingModule
   ],
   providers: [
-    ChecklistsFacadeService,
-    ChecklistsService
+    ChecklistsFacadeService
   ]
 })
 export class ChecklistsModule { }

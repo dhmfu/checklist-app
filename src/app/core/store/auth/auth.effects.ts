@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service'
 @Injectable()
 export class AuthEffects {
   login$ = createEffect(() => this.actions$.pipe(
-    ofType(login.type),
+    ofType(login),
     switchMap(({ email, password }) => this.authService.login({ email, password })),
     map(response => loginSuccess({ token: response })),
     catchError((error: HttpErrorResponse) => {
@@ -23,7 +23,7 @@ export class AuthEffects {
   ))
 
   loginSuccess$ = createEffect(() => this.actions$.pipe(
-    ofType(loginSuccess.type),
+    ofType(loginSuccess),
     tap(() => {
       this.router.navigate([''])
     })

@@ -2,7 +2,7 @@ import { createReducer, on } from "@ngrx/store"
 
 import { Checklist } from "../../models/checklist.interface"
 
-import { createChecklist, deleteChecklist, toggleQuestion } from "./checklists.actions"
+import { createChecklistSuccess, deleteChecklist, toggleQuestion } from "./checklists.actions"
 
 export interface ChecklistsState {
   [id: string]: Checklist
@@ -12,18 +12,7 @@ export const initialState: ChecklistsState = {}
 
 export const checklistsReducer = createReducer(
   initialState,
-  on(createChecklist, (state, action) => {
-    const newChecklistId = uniqueId()
-
-    return {
-      ...state,
-      [newChecklistId]: {
-        id: newChecklistId,
-        name: action.name,
-        questions: action.questions.map(question => ({ checked: false, term: question }))
-      }
-    }
-  }),
+  on(createChecklistSuccess, (state, { id, name, questions }) => ({ ...state, [id]: { id, name, questions } })),
   on(toggleQuestion, (state, action) => {
     const checklist = state[action.id]
     const newChecklistQuestions = checklist.questions.map((question, i) => {
@@ -46,7 +35,3 @@ export const checklistsReducer = createReducer(
     return newState
   })
 )
-
-function uniqueId(): string { // TODO: temporary function 
-  return Date.now().toString()
-}

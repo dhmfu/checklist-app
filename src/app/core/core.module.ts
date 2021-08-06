@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
@@ -24,7 +24,7 @@ import { NavbarUiComponent } from './components/navbar/navbar-ui.component'
 import { LoginComponent } from './components/login/login.component'
 import { LoginUiComponent } from './components/login/login-ui.component'
 
-import { homeFeatureKey } from '../home/store'
+import { JwtInterceptor } from './interceptors/jwt.interceptor'
 
 import { coreReducers } from './store'
 import { uiFeatureKey } from './store/ui'
@@ -32,7 +32,7 @@ import { AuthEffects, authFeatureKey } from './store/auth'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({ keys: [homeFeatureKey, uiFeatureKey, authFeatureKey], rehydrate: true })(reducer)
+  return localStorageSync({ keys: [uiFeatureKey, authFeatureKey], rehydrate: true })(reducer)
 }
 
 @NgModule({
@@ -62,6 +62,9 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
   exports: [
     NavbarComponent,
     BodyComponent
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ]
 })
 export class CoreModule { }

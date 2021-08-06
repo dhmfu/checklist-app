@@ -11,6 +11,11 @@ export const createChecklist = createAction(
   props<ChecklistFormData>()
 )
 
+export const createChecklistSuccess = createAction(
+  `[${CHECKLISTS_ACTION_TAG}] Create checklist success`,
+  props<Checklist>()
+)
+
 export const toggleQuestion = createAction(
   `[${CHECKLISTS_ACTION_TAG}] Toggle question`,
   props<ToggleQuestion>()

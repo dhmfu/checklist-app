@@ -5,3 +5,5 @@ export * from './checklists.reducer'
 export * from './checklists.feature-key'
 
 export * from './checklists.selectors'
+
+export * from './checklists.effects'
