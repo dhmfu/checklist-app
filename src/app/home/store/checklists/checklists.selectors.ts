@@ -6,19 +6,23 @@ import { selectHome } from "../home.selector"
 
 import { checklistsFeatureKey } from "./checklists.feature-key"
 
-export const selectChecklists = createSelector(selectHome, state => state[checklistsFeatureKey])
+export const selectChecklistsFeature = createSelector(selectHome, state => state[checklistsFeatureKey])
+
+export const selectChecklistsEntities = createSelector(selectChecklistsFeature, state => state.entities)
+export const selectChecklistsLoading = createSelector(selectChecklistsFeature, state => state.loading) 
+export const selectChecklistsLoaded = createSelector(selectChecklistsFeature, state => state.loaded) 
 
 export const selectAsMenuItems = createSelector(
-  selectChecklists,
+  selectChecklistsEntities,
   state => Object.values(state).map(({ name, id }) => ({ name, id }))
 )
 
 export const selectRoutedChecklist = createSelector(
-  selectChecklists,
+  selectChecklistsEntities,
   selectRouteParams,
-  (checkliststState, routeParams) => {
+  (checkliststEntities, routeParams) => {
     const id = routeParams['id'] as string
 
-    return checkliststState[id]
+    return checkliststEntities[id]
   }
 )

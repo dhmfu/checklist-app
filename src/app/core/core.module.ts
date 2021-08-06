@@ -29,6 +29,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor'
 import { coreReducers } from './store'
 import { uiFeatureKey } from './store/ui'
 import { AuthEffects, authFeatureKey } from './store/auth'
+import { RouterEffects } from './store/router'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
@@ -51,7 +52,7 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
     StoreModule.forRoot(coreReducers, { metaReducers: [localStorageSyncReducer] }),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, RouterEffects]),
     MaterialModule,
     MatMenuModule,
     MatToolbarModule,

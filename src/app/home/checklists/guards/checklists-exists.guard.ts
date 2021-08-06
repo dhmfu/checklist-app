@@ -1,33 +1,36 @@
 import { Injectable } from '@angular/core'
-import { ActivatedRouteSnapshot, CanActivate, Router, UrlTree } from '@angular/router'
+import { CanActivate } from '@angular/router'
 import { Observable } from 'rxjs'
-import { map, take } from 'rxjs/operators'
+import { map, switchMap, take, tap } from 'rxjs/operators'
 
 import { Store } from '@ngrx/store'
 
-import { selectChecklists } from '../../store/checklists'
+import { navigateFromNoChecklist } from '../../../core/store/router/router.actions'
 
-import { NotificationService } from '../../../core/services/notification.service'
+import { selectRoutedChecklist } from '../../store/checklists'
+
+import { ChecklistsFacadeService } from '../facade/checklists-facade.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChecklistsExistsGuard implements CanActivate {
-  constructor(private store: Store, private router: Router, private notifications: NotificationService) {}
+  constructor(private store: Store, private checklistsFacade: ChecklistsFacadeService) {}
 
-  canActivate(route: ActivatedRouteSnapshot): Observable<true | UrlTree> {
-    return this.store.select(selectChecklists).pipe(
-      map(checklists => {
-        if (checklists[route.params['id']]) {
-          return true
-        } else {
-          this.notifications.showMissingChecklistSnackbar()
-
-          return this.router.parseUrl('checklists/new')
+  canActivate(): Observable<boolean> {
+    return this.storeLoaded().pipe(
+      switchMap(() => this.store.select(selectRoutedChecklist)),
+      map(checklist => !!checklist),
+      take(1),
+      tap(exists => {
+        if (!exists) {
+          this.store.dispatch(navigateFromNoChecklist())
         }
-      }),
-      take(1)
+      })
     )
   }
-  
+
+  private storeLoaded(): Observable<boolean> {
+    return this.checklistsFacade.loadChecklists()
+  }
 }

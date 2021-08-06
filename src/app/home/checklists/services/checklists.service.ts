@@ -16,13 +16,17 @@ export class ChecklistsService {
   private readonly API_URL = environment.apiUrl
 
   constructor(private http: HttpClient) {}
+
+  loadChecklists(): Observable<Checklist[]> {
+    return this.http.get<Checklist[]>(this.API_URL + '/checklists')
+  }
   
   getDefaultQuestionList(): Observable<string[]> {
     return of(DEFAULT_QUESTIONS)
   }
 
   createChecklist(checklistData: ChecklistFormData): Observable<Checklist> {
-    const url = this.API_URL + '/checklists/new'
+    const url = this.API_URL + '/checklists'
     
     return this.http.post<Checklist>(url, checklistData)
   }

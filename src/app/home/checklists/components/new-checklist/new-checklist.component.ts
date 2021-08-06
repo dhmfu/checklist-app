@@ -9,11 +9,11 @@ import { ChecklistFormData } from '../../../models/checklist-form.interface'
   styleUrls: ['./new-checklist.component.scss']
 })
 export class NewChecklistComponent {
-  list$ = this.checklistsService.getQuestionList()
+  list$ = this.checklistsFacade.getQuestionList()
 
-  constructor(private checklistsService: ChecklistsFacadeService) {}
+  constructor(private checklistsFacade: ChecklistsFacadeService) {}
 
   onCreate(formValue: ChecklistFormData): void {
-    this.checklistsService.createChecklist(formValue)
+    this.checklistsFacade.createChecklist(formValue)
   }
 }

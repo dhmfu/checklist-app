@@ -9,22 +9,22 @@ import { MatListModule } from '@angular/material/list'
 
 import { MaterialModule } from '../../shared/material/material.module'
 
+import { ChecklistsRoutingModule } from './checklists.routing.module'
+
 import { NewChecklistComponent } from './components/new-checklist/new-checklist.component'
 import { NewChecklistUiComponent } from './components/new-checklist/new-checklist-ui.component'
 
-import { ChecklistsFacadeService } from './facade/checklists-facade.service'
-
-import { ChecklistsRoutingModule } from './checklists.routing.module'
-
 import { ChecklistComponent } from './components/checklist/checklist.component'
 import { ChecklistUiComponent } from './components/checklist/checklist-ui.component'
+import { ChecklistsHostComponent } from './components/checklists-host/checklists-host.component'
 
 @NgModule({
   declarations: [
     NewChecklistComponent,
     NewChecklistUiComponent,
     ChecklistComponent,
-    ChecklistUiComponent
+    ChecklistUiComponent,
+    ChecklistsHostComponent
   ],
   imports: [
     CommonModule,
@@ -35,9 +35,6 @@ import { ChecklistUiComponent } from './components/checklist/checklist-ui.compon
     MatListModule,
     MaterialModule,
     ChecklistsRoutingModule
-  ],
-  providers: [
-    ChecklistsFacadeService
   ]
 })
 export class ChecklistsModule { }

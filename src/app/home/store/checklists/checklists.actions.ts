@@ -6,6 +6,15 @@ import { ToggleQuestion } from "../../models/events/toggle-question.interface"
 
 const CHECKLISTS_ACTION_TAG = 'Checklists'
 
+export const loadChecklists = createAction(
+  `[${CHECKLISTS_ACTION_TAG}] Load checklists`
+)
+
+export const loadChecklistsSuccess = createAction(
+  `[${CHECKLISTS_ACTION_TAG}] Load checklists success`,
+  props<{ checklists: Checklist[] }>()
+)
+
 export const createChecklist = createAction(
   `[${CHECKLISTS_ACTION_TAG}] Create checklist`,
   props<ChecklistFormData>()

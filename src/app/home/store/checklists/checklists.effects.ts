@@ -4,7 +4,7 @@ import { map, switchMap, tap } from 'rxjs/operators'
 
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 
-import { createChecklist, createChecklistSuccess } from './checklists.actions'
+import { createChecklist, createChecklistSuccess, loadChecklists, loadChecklistsSuccess } from './checklists.actions'
 import { ChecklistsService } from '../../checklists/services/checklists.service'
  
 @Injectable()
@@ -22,6 +22,13 @@ export class ChecklistsEffects {
       this.router.navigate(['checklists', action.id])
     })
   ), { dispatch: false })
+
+  loadChecklists$ = createEffect(() => this.actions$.pipe(
+    ofType(loadChecklists),
+    switchMap(() => this.checklistsService.loadChecklists()),
+    map(response => loadChecklistsSuccess({ checklists: response }))
+    // TODO: error handling
+  ))
 
   constructor(private actions$: Actions, private checklistsService: ChecklistsService, private router: Router) {}
 }
