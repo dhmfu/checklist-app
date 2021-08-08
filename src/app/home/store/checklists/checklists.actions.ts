@@ -34,3 +34,8 @@ export const deleteChecklist = createAction(
   `[${CHECKLISTS_ACTION_TAG}] Delete checklist`,
   props<Checklist>()
 )
+
+export const deleteChecklistSuccess = createAction(
+  `[${CHECKLISTS_ACTION_TAG}] Delete checklist success`,
+  props<Checklist>()
+)

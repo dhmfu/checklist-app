@@ -17,17 +17,25 @@ export class ChecklistsService {
 
   constructor(private http: HttpClient) {}
 
-  loadChecklists(): Observable<Checklist[]> {
-    return this.http.get<Checklist[]>(this.API_URL + '/checklists')
+  createChecklist(checklistData: ChecklistFormData): Observable<Checklist> {
+    const url = this.API_URL + '/checklists'
+    
+    return this.http.post<Checklist>(url, checklistData)
+  }
+
+  deleteChecklist(checklist: Checklist): Observable<void> {
+    const url = `${this.API_URL}/checklists/${checklist.id}`
+
+    return this.http.delete<void>(url)
   }
   
   getDefaultQuestionList(): Observable<string[]> {
     return of(DEFAULT_QUESTIONS)
   }
 
-  createChecklist(checklistData: ChecklistFormData): Observable<Checklist> {
+  loadChecklists(): Observable<Checklist[]> {
     const url = this.API_URL + '/checklists'
     
-    return this.http.post<Checklist>(url, checklistData)
+    return this.http.get<Checklist[]>(url)
   }
 }

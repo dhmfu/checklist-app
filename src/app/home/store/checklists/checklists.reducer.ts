@@ -5,6 +5,7 @@ import { Checklist } from "../../models/checklist.interface"
 import {
   createChecklistSuccess,
   deleteChecklist,
+  deleteChecklistSuccess,
   loadChecklists,
   loadChecklistsSuccess,
   toggleQuestion
@@ -58,7 +59,11 @@ export const checklistsReducer = createReducer(
       entities
     }
   }),
-  on(deleteChecklist, (state, action) => { // TODO: remove on server
+  on(deleteChecklist, (state) => {
+    // TODO: Implement some transition-state
+    return state
+  }),
+  on(deleteChecklistSuccess, (state, action) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { [action.id]: removedChecklist, ...entities } = state.entities
 

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core'
-import { Router } from '@angular/router'
 import { combineLatest, Observable } from 'rxjs'
 
 import { Store } from '@ngrx/store'
@@ -26,11 +25,7 @@ import { filter, map, take, tap } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class ChecklistsFacadeService {
-  constructor(
-    private store: Store<ChecklistsState>,
-    private router: Router,
-    private checklistsService: ChecklistsService
-  ) {}
+  constructor(private store: Store<ChecklistsState>, private checklistsService: ChecklistsService) {}
 
   createChecklist(data: ChecklistFormData): void {
     this.store.dispatch(createChecklist(data))
@@ -45,9 +40,7 @@ export class ChecklistsFacadeService {
   }
 
   deleteChecklist(checklist: Checklist): void {
-    this.router.navigate(['checklists', 'new']).then(() => {
-      this.store.dispatch(deleteChecklist(checklist))
-    })
+    this.store.dispatch(deleteChecklist(checklist))
   }
 
   loadChecklists(): Observable<boolean> {
