@@ -40,7 +40,7 @@ export const checklistsReducer = createReducer(
 
     return ({ ...state, entities })
   }),
-  on(toggleQuestion, (state, action) => { // TODO: toggle on server
+  on(toggleQuestion, (state, action) => { // TODO: Implement some transition-state
     const checklist = state.entities[action.id]
     const newChecklistQuestions = checklist.questions.map((question, i) => {
       if (i === action.index) {

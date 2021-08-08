@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
-import { map, switchMap, tap } from 'rxjs/operators'
+import { debounceTime, groupBy, map, mergeMap, switchMap, tap } from 'rxjs/operators'
 
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 
-import { createChecklist, createChecklistSuccess, deleteChecklist, deleteChecklistSuccess, loadChecklists, loadChecklistsSuccess } from './checklists.actions'
+import { createChecklist, createChecklistSuccess, deleteChecklist, deleteChecklistSuccess, loadChecklists, loadChecklistsSuccess, toggleQuestion } from './checklists.actions'
 import { ChecklistsService } from '../../checklists/services/checklists.service'
 import { from } from 'rxjs'
  
@@ -41,6 +41,17 @@ export class ChecklistsEffects {
     map(response => loadChecklistsSuccess({ checklists: response }))
     // TODO: error handling
   ))
+
+  toggleQuestion$ = createEffect(() => this.actions$.pipe(
+    ofType(toggleQuestion),
+    groupBy(action => action.id),
+    mergeMap(group$ => {
+      return group$.pipe(
+        debounceTime(3000),
+        switchMap(action => this.checklistsService.updateQuestions(action.id))
+      )
+    })
+  ), { dispatch: false })
 
   constructor(private actions$: Actions, private checklistsService: ChecklistsService, private router: Router) {}
 }
