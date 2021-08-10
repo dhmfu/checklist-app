@@ -16,6 +16,7 @@ import { localStorageSync } from 'ngrx-store-localstorage'
 
 import { MaterialModule } from '../shared/material/material.module'
 
+import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component'
 import { AccountComponent } from './components/account/account.component'
 import { AccountUiComponent } from './components/account/account-ui.component'
 import { BodyComponent } from './components/body/body.component'
@@ -48,7 +49,8 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
     AccountComponent,
     AccountUiComponent,
     SignUpComponent,
-    SignUpUiComponent
+    SignUpUiComponent,
+    AuthLayoutComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,19 @@
-<h1>Реєстрація</h1>
-<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-    <input type="text" placeholder="Ім'я" formControlName="name">
-    <input type="email" placeholder="Пошта" formControlName="email">
-    <input type="text" placeholder="Пароль" formControlName="password">
-    <button type="submit" [disabled]="signUpForm.invalid">Зберегти</button>
-</form>
+<app-auth-layout>
+    <h1 class="title">Реєстрація</h1>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Ім'я</mat-label>
+            <input name="name" matInput type="text" formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Пошта</mat-label>
+            <input name="email" matInput type="email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Пароль</mat-label>
+            <input name="password" matInput type="password" formControlName="password">
+        </mat-form-field>
+        <button mat-button type="submit" [disabled]="signUpForm.invalid">Зберегти</button>
+    </form>
+    <div class="cta">Вже маєте аккаунт?<a mat-button routerLink="login" [relativeTo]="null">Вхід</a></div>
+</app-auth-layout>

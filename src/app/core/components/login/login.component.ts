@@ -5,8 +5,7 @@ import { AuthFacadeService } from '../../facade/auth-facade.service'
 import { LoginCredentials } from '../../models/credentials'
 
 @Component({
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
   loginLoading$ = this.auth.isAuthLoading()

@@ -3,13 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 import { LoginCredentials } from '../../models/credentials'
 
-// TODO: styles and markup
 // TODO: type-check login-form
 
 @Component({
   selector: 'app-login-ui',
   templateUrl: './login-ui.component.html',
-  styleUrls: ['./login-ui.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginUiComponent {

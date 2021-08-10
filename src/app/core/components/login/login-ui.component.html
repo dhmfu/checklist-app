@@ -1,7 +1,15 @@
-<h1>Вхід</h1>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <input type="email" placeholder="Пошта" formControlName="email">
-    <input type="password" placeholder="Пароль" formControlName="password">
-    <button type="submit" [disabled]="loginForm.invalid">Увійти</button>
-</form>
-<a routerLink="sign-up" [relativeTo]="null">Реєстрація</a>
+<app-auth-layout>
+    <h1 class="title">Вхід</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Пошта</mat-label>
+            <input name="email" matInput type="email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Пароль</mat-label>
+            <input name="password" matInput type="password" formControlName="password">
+        </mat-form-field>
+        <button mat-button type="submit" [disabled]="loginForm.invalid">Увійти</button>
+    </form>
+    <div class="cta">Не маєте аккаунта?<a mat-button routerLink="sign-up" [relativeTo]="null">Реєстрація</a></div>
+</app-auth-layout>

@@ -3,13 +3,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 
 import { SignUpCredentials } from '../../models/credentials'
 
-// TODO: styles and markup
 // TODO: type-check sign-up-form
 
 @Component({
   selector: 'app-sign-up-ui',
   templateUrl: './sign-up-ui.component.html',
-  styleUrls: ['./sign-up-ui.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignUpUiComponent {
