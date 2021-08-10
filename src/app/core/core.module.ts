@@ -23,6 +23,8 @@ import { NavbarComponent } from './components/navbar/navbar.component'
 import { NavbarUiComponent } from './components/navbar/navbar-ui.component'
 import { LoginComponent } from './components/login/login.component'
 import { LoginUiComponent } from './components/login/login-ui.component'
+import { SignUpComponent } from './components/sign-up/sign-up.component'
+import { SignUpUiComponent } from './components/sign-up/sign-up-ui.component'
 
 import { JwtInterceptor } from './interceptors/jwt.interceptor'
 
@@ -33,7 +35,7 @@ import { RouterEffects } from './store/router'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({ keys: [uiFeatureKey, authFeatureKey], rehydrate: true })(reducer)
+  return localStorageSync({ keys: [uiFeatureKey, { [authFeatureKey]: ['jwt'] }], rehydrate: true })(reducer)
 }
 
 @NgModule({
@@ -44,7 +46,9 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
     LoginComponent,
     LoginUiComponent,
     AccountComponent,
-    AccountUiComponent
+    AccountUiComponent,
+    SignUpComponent,
+    SignUpUiComponent
   ],
   imports: [
     CommonModule,

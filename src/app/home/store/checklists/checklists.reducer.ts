@@ -8,6 +8,7 @@ import {
   deleteChecklistSuccess,
   loadChecklists,
   loadChecklistsSuccess,
+  resetChecklists,
   toggleQuestion
 } from "./checklists.actions"
 
@@ -68,5 +69,6 @@ export const checklistsReducer = createReducer(
     const { [action.id]: removedChecklist, ...entities } = state.entities
 
     return { ...state, entities }
-  })
+  }),
+  on(resetChecklists, () => ({ ...initialState }))
 )

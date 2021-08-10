@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store"
 
-import { login, loginFailure, loginSuccess, logout } from "./auth.actions"
+import { login, loginFailure, loginSuccess, logout, signUp } from "./auth.actions"
 
 export interface AuthState {
   jwt: string | null
@@ -17,5 +17,6 @@ export const authReducer = createReducer(
   on(login, state => ({ ...state, loading: true })),
   on(loginSuccess, (state, action) => ({ ...state, jwt: action.token, loading: false })),
   on(loginFailure, state => ({ ...state, loading: false })),
-  on(logout, state => ({ ...state, jwt: null }))
+  on(logout, state => ({ ...state, jwt: null })),
+  on(signUp, state => ({ ...state, loading: true }))
 )

@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
 import { debounceTime, groupBy, map, mergeMap, switchMap, tap } from 'rxjs/operators'
+import { from } from 'rxjs'
 
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 
-import { createChecklist, createChecklistSuccess, deleteChecklist, deleteChecklistSuccess, loadChecklists, loadChecklistsSuccess, toggleQuestion } from './checklists.actions'
+import { logout } from '../../../core/store/auth'
+
+import { createChecklist, createChecklistSuccess, deleteChecklist, deleteChecklistSuccess, loadChecklists, loadChecklistsSuccess, resetChecklists, toggleQuestion } from './checklists.actions'
 import { ChecklistsService } from '../../checklists/services/checklists.service'
-import { from } from 'rxjs'
  
 @Injectable()
 export class ChecklistsEffects {
@@ -40,6 +42,11 @@ export class ChecklistsEffects {
     switchMap(() => this.checklistsService.loadChecklists()),
     map(response => loadChecklistsSuccess({ checklists: response }))
     // TODO: error handling
+  ))
+
+  resetChecklists$ = createEffect(() => this.actions$.pipe(
+    ofType(logout),
+    map(() => resetChecklists())
   ))
 
   toggleQuestion$ = createEffect(() => this.actions$.pipe(

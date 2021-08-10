@@ -39,7 +39,7 @@ export const selectLoggedIn = createSelector(
   state => !!state
 )
 
-export const selectLoginLoading = createSelector(
+export const selectAuthLoading = createSelector(
   selectAuthFeature,
   state => state.loading
 )

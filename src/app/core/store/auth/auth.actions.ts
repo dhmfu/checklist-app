@@ -1,6 +1,6 @@
 import { createAction, props } from "@ngrx/store"
 
-import { LoginCredentials } from "../../models/credentials"
+import { LoginCredentials, SignUpCredentials } from "../../models/credentials"
 
 const AUTH_ACTION_TAG = 'Auth'
 
@@ -21,4 +21,9 @@ export const loginFailure = createAction(
 
 export const logout = createAction(
   `[${AUTH_ACTION_TAG}] Logout`
+)
+
+export const signUp = createAction(
+  `[${AUTH_ACTION_TAG}] Sign Up`,
+  props<SignUpCredentials>()
 )

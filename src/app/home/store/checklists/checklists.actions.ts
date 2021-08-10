@@ -39,3 +39,7 @@ export const deleteChecklistSuccess = createAction(
   `[${CHECKLISTS_ACTION_TAG}] Delete checklist success`,
   props<Checklist>()
 )
+
+export const resetChecklists = createAction(
+  `[${CHECKLISTS_ACTION_TAG}] Reset checklists`
+)

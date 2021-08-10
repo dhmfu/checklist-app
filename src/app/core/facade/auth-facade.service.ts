@@ -3,9 +3,9 @@ import { Observable } from 'rxjs'
 
 import { Store } from '@ngrx/store'
 
-import { LoginCredentials } from '../models/credentials'
+import { LoginCredentials, SignUpCredentials } from '../models/credentials'
 
-import { login, logout, selectLoggedIn, selectLoginLoading, selectUserName } from '../store/auth'
+import { login, logout, selectLoggedIn, selectAuthLoading, selectUserName, signUp } from '../store/auth'
 import { CoreState } from '../store'
 
 @Injectable({
@@ -22,8 +22,8 @@ export class AuthFacadeService {
     return this.store.select(selectLoggedIn)
   }
 
-  isLoginLoading(): Observable<boolean> {
-    return this.store.select(selectLoginLoading)
+  isAuthLoading(): Observable<boolean> {
+    return this.store.select(selectAuthLoading)
   }
 
   login(credentials: LoginCredentials): void {
@@ -32,5 +32,9 @@ export class AuthFacadeService {
 
   logout(): void {
     this.store.dispatch(logout())
+  }
+
+  signUp(credentials: SignUpCredentials): void {
+    this.store.dispatch(signUp(credentials))
   }
 }

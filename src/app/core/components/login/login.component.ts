@@ -9,7 +9,7 @@ import { LoginCredentials } from '../../models/credentials'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  loginLoading$ = this.auth.isLoginLoading()
+  loginLoading$ = this.auth.isAuthLoading()
 
   constructor(private auth: AuthFacadeService) {}
 
