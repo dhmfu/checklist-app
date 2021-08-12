@@ -13,11 +13,16 @@
 
   ::ng-deep {
     form {
+      align-items: center;
       display: flex;
       flex-direction: column;
       width: 500px;
     
       @media only screen and (max-width: 599.98px) {
+        width: 100%;
+      }
+
+      mat-form-field {
         width: 100%;
       }
     }

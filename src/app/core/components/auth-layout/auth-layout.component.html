@@ -1,3 +1,6 @@
-<ng-content select=".title"></ng-content>
-<ng-content select="form"></ng-content>
-<ng-content select=".cta"></ng-content>
+<ng-container *ngIf="!(showSpinner$ | async); else loadingView">
+    <ng-content select=".title"></ng-content>
+    <ng-content select="form"></ng-content>
+    <ng-content select=".cta"></ng-content>
+</ng-container>
+<ng-template #loadingView><mat-spinner></mat-spinner></ng-template>

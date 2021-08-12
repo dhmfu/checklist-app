@@ -14,9 +14,11 @@ import { Store } from '@ngrx/store'
 import { CoreState } from '../store'
 import { logout, selectToken } from '../store/auth'
 
+import { NotificationService } from '../services/notification.service'
+
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  constructor(private store: Store<CoreState>) {}
+  constructor(private store: Store<CoreState>, private notificationService: NotificationService) {}
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return this.store.select(selectToken).pipe(
@@ -28,6 +30,7 @@ export class JwtInterceptor implements HttpInterceptor {
           tap({
             error: (error) => {
               if (error instanceof HttpErrorResponse && error.status === 401) {
+                this.notificationService.showAuthError('jwt')
                 this.store.dispatch(logout())
               }
             }

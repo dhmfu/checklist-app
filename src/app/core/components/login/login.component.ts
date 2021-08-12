@@ -8,8 +8,6 @@ import { LoginCredentials } from '../../models/credentials'
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
-  loginLoading$ = this.auth.isAuthLoading()
-
   constructor(private auth: AuthFacadeService) {}
 
   onLogin(credentials: LoginCredentials): void {

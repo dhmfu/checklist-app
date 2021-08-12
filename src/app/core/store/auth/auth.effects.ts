@@ -6,8 +6,10 @@ import { map, catchError, switchMap, tap } from 'rxjs/operators'
 
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 
-import { login, loginFailure, loginSuccess, logout, signUp } from './auth.actions'
 import { AuthService } from '../../services/auth.service'
+import { NotificationService } from '../../services/notification.service'
+
+import { login, authFailure, loginSuccess, logout, signUp } from './auth.actions'
  
 @Injectable()
 export class AuthEffects {
@@ -17,9 +19,7 @@ export class AuthEffects {
       return this.authService.login({ email, password }).pipe(
         map(response => loginSuccess({ token: response })),
         catchError((error: HttpErrorResponse) => {
-          console.log(error)
-
-          return of(loginFailure({ error: error.error || error.message })) // TODO: maybe better error extraction
+          return of(authFailure({ error: this.extractErrorMessage(error) }))
         })
       )
     })
@@ -43,11 +43,29 @@ export class AuthEffects {
     ofType(signUp),
     switchMap(({ name, email, password }) => {
       return this.authService.signUp({ name, email, password }).pipe(
-        map(() => login({ password, email }))
+        map(() => login({ password, email })),
+        catchError((error: HttpErrorResponse) => {
+          return of(authFailure({ error: this.extractErrorMessage(error) }))
+        })
       )
     })
-    // TODO: error handle
   ))
 
-  constructor(private actions$: Actions, private authService: AuthService, private router: Router) {}
+  authFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(authFailure),
+    tap(({ error }) => {
+      this.notificationService.showAuthError(error)
+    })
+  ), { dispatch: false })
+
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private router: Router,
+    private notificationService: NotificationService
+  ) {}
+
+  private extractErrorMessage(error: HttpErrorResponse): string {
+    return error.error
+  }
 }

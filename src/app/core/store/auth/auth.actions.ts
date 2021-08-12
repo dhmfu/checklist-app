@@ -14,7 +14,7 @@ export const loginSuccess = createAction(
   props<{ token: string }>()
 )
 
-export const loginFailure = createAction(
+export const authFailure = createAction(
   `[${AUTH_ACTION_TAG}] Login Failure`,
   props<{ error: string }>()
 )

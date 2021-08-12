@@ -26,6 +26,11 @@ export class SignUpUiComponent {
 
   onSubmit(): void {
     if (this.signUpForm.valid) {
+      // Not the best decision, but material components throw errors otherwise
+      if (document.activeElement && document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur()
+      }
+
       this.signUp.emit(this.signUpForm.value)
     }
   }

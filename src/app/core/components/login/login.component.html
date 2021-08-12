@@ -1,5 +1,1 @@
-<app-login-ui (login)="onLogin($event)" *ngIf="!(loginLoading$ | async); else loading"></app-login-ui>
-
-<ng-template #loading>Loading...</ng-template>
-
-<!-- TODO: display login error -->
+<app-login-ui (login)="onLogin($event)"></app-login-ui>

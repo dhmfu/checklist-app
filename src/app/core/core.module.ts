@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 import { EffectsModule } from '@ngrx/effects'
 import { ActionReducer, StoreModule } from '@ngrx/store'
@@ -63,6 +64,7 @@ export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionRedu
     MatMenuModule,
     MatToolbarModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     ReactiveFormsModule
   ],

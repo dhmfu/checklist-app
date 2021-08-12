@@ -19,7 +19,6 @@ export const selectUserName = createSelector(
   jwtToken => {
     let name = ''
 
-    
     if (jwtToken) {
       try {
         const jwtDecoded = jwtDecode<{ name: string }>(jwtToken)

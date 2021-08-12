@@ -24,6 +24,11 @@ export class LoginUiComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      // Not the best decision, but material components throw errors otherwise
+      if (document.activeElement && document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur()
+      }
+
       this.login.emit(this.loginForm.value)
     }
   }
