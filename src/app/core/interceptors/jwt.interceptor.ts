@@ -3,15 +3,16 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http'
 import { Observable } from 'rxjs'
-import { switchMap, take } from 'rxjs/operators'
+import { switchMap, take, tap } from 'rxjs/operators'
 
 import { Store } from '@ngrx/store'
 
 import { CoreState } from '../store'
-import { selectToken } from '../store/auth'
+import { logout, selectToken } from '../store/auth'
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -23,9 +24,16 @@ export class JwtInterceptor implements HttpInterceptor {
       switchMap(token => {
         const request = token ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } }) : req
 
-        return next.handle(request)
+        return next.handle(request).pipe(
+          tap({
+            error: (error) => {
+              if (error instanceof HttpErrorResponse && error.status === 401) {
+                this.store.dispatch(logout())
+              }
+            }
+          })
+        )
       })
-      // TODO: logout on error
     )
   }
 }

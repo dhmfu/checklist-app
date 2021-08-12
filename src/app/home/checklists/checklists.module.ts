@@ -14,15 +14,13 @@ import { NewChecklistUiComponent } from './components/new-checklist/new-checklis
 
 import { ChecklistComponent } from './components/checklist/checklist.component'
 import { ChecklistUiComponent } from './components/checklist/checklist-ui.component'
-import { ChecklistsHostComponent } from './components/checklists-host/checklists-host.component'
 
 @NgModule({
   declarations: [
     NewChecklistComponent,
     NewChecklistUiComponent,
     ChecklistComponent,
-    ChecklistUiComponent,
-    ChecklistsHostComponent
+    ChecklistUiComponent
   ],
   imports: [
     CommonModule,

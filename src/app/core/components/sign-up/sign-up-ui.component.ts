@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { SignUpCredentials } from '../../models/credentials'
 
 // TODO: type-check sign-up-form
+// TODO: confirmPassword control
 
 @Component({
   selector: 'app-sign-up-ui',

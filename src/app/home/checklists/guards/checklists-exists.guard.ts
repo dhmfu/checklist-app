@@ -1,21 +1,19 @@
 import { Injectable } from '@angular/core'
 import { CanActivate } from '@angular/router'
 import { Observable } from 'rxjs'
-import { map, switchMap, take, tap } from 'rxjs/operators'
+import { filter, map, switchMap, take, tap } from 'rxjs/operators'
 
 import { Store } from '@ngrx/store'
 
 import { navigateFromNoChecklist } from '../../../core/store/router/router.actions'
 
-import { selectRoutedChecklist } from '../../store/checklists'
-
-import { ChecklistsFacadeService } from '../facade/checklists-facade.service'
+import { selectChecklistsLoaded, selectRoutedChecklist } from '../../store/checklists'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChecklistsExistsGuard implements CanActivate {
-  constructor(private store: Store, private checklistsFacade: ChecklistsFacadeService) {}
+  constructor(private store: Store) {}
 
   canActivate(): Observable<boolean> {
     return this.storeLoaded().pipe(
@@ -31,6 +29,8 @@ export class ChecklistsExistsGuard implements CanActivate {
   }
 
   private storeLoaded(): Observable<boolean> {
-    return this.checklistsFacade.loadChecklists()
+    return this.store.select(selectChecklistsLoaded).pipe(
+      filter(loaded => loaded)
+    )
   }
 }
