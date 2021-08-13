@@ -16,6 +16,10 @@ export class NotificationService {
     this.snackBar.open(errorMessage, undefined, { duration: 2000 })
   }
 
+  showChecklistsError(error: string): void {
+    this.snackBar.open(error, undefined, { duration: 2000 })
+  }
+
   showMissingChecklistSnackbar(): void {
     this.snackBar.open('Такого списку не існує, перенаправляємо..', undefined, { duration: 2000 })
   }

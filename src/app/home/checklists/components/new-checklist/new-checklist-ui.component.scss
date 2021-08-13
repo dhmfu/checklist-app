@@ -3,6 +3,11 @@
   display: flex;
   flex-direction: column;
 
+  &.loading {
+    height: 100%;
+    justify-content: center;
+  }
+
   form {
     align-items: center;
     display: flex;

@@ -13,6 +13,7 @@ import {
   createChecklist,
   deleteChecklist,
   loadChecklists,
+  selectChecklistsCreating,
   selectChecklistsLoaded,
   selectRoutedChecklist,
   toggleQuestion
@@ -32,6 +33,10 @@ export class ChecklistsFacadeService {
 
   getChecklist(): Observable<Checklist> {
     return this.store.select(selectRoutedChecklist)
+  }
+
+  getIsCreating(): Observable<boolean> {
+    return this.store.select(selectChecklistsCreating)
   }
 
   getQuestionList(): Observable<string[]> {

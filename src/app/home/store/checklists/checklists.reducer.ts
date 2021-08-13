@@ -3,6 +3,8 @@ import { createReducer, on } from "@ngrx/store"
 import { Checklist } from "../../models/checklist.interface"
 
 import {
+  createChecklist,
+  createChecklistFailure,
   createChecklistSuccess,
   deleteChecklist,
   deleteChecklistSuccess,
@@ -15,13 +17,15 @@ import {
 export interface ChecklistsState {
   entities: { [id: string]: Checklist }
   loaded: boolean
-  loading: boolean
+  loading: boolean,
+  creating: boolean
 }
 
 export const initialState: ChecklistsState = {
   entities: {},
   loading: false,
-  loaded: false
+  loaded: false,
+  creating: false
 }
 
 export const checklistsReducer = createReducer(
@@ -36,12 +40,14 @@ export const checklistsReducer = createReducer(
 
     return { ...state, entities, loading: false, loaded: true }
   }),
+  on(createChecklist, state => ({...state, creating: true })),
   on(createChecklistSuccess, (state, { id, name, questions }) => {
     const entities = { ...state.entities, [id]: { id, name, questions } }
 
-    return ({ ...state, entities })
+    return ({ ...state, entities, creating: false })
   }),
-  on(toggleQuestion, (state, action) => { // TODO: Implement some transition-state
+  on(createChecklistFailure, state => ({ ...state, creating: false })),
+  on(toggleQuestion, (state, action) => {
     const checklist = state.entities[action.id]
     const newChecklistQuestions = checklist.questions.map((question, i) => {
       if (i === action.index) {
@@ -55,10 +61,7 @@ export const checklistsReducer = createReducer(
       [action.id]: { ...checklist, questions: newChecklistQuestions }
     }
 
-    return {
-      ...state,
-      entities
-    }
+    return { ...state, entities }
   }),
   on(deleteChecklist, (state) => {
     // TODO: Implement some transition-state

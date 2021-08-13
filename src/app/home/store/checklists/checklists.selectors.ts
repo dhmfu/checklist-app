@@ -9,8 +9,9 @@ import { checklistsFeatureKey } from "./checklists.feature-key"
 export const selectChecklistsFeature = createSelector(selectHome, state => state[checklistsFeatureKey])
 
 export const selectChecklistsEntities = createSelector(selectChecklistsFeature, state => state.entities)
-export const selectChecklistsLoading = createSelector(selectChecklistsFeature, state => state.loading) 
-export const selectChecklistsLoaded = createSelector(selectChecklistsFeature, state => state.loaded) 
+export const selectChecklistsLoading = createSelector(selectChecklistsFeature, state => state.loading)
+export const selectChecklistsLoaded = createSelector(selectChecklistsFeature, state => state.loaded)
+export const selectChecklistsCreating = createSelector(selectChecklistsFeature, state => state.creating)
 
 export const selectAsMenuItems = createSelector(
   selectChecklistsEntities,

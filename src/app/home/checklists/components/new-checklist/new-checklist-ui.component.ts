@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, OnChanges, Output, EventEmitter } from '@angular/core'
+import { Component, ChangeDetectionStrategy, Input, OnChanges, Output, EventEmitter, HostBinding } from '@angular/core'
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 import { ChecklistFormData, ChecklistFormControls } from '../../../models/checklist-form.interface'
@@ -13,6 +13,8 @@ import { ChecklistFormData, ChecklistFormControls } from '../../../models/checkl
 })
 export class NewChecklistUiComponent implements OnChanges {
   @Input() list: string[] = []
+
+  @HostBinding('class.loading') @Input() loading = false
 
   checklistForm: FormGroup
 
