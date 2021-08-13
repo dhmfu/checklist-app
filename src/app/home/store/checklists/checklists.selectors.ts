@@ -12,6 +12,7 @@ export const selectChecklistsEntities = createSelector(selectChecklistsFeature, 
 export const selectChecklistsLoading = createSelector(selectChecklistsFeature, state => state.loading)
 export const selectChecklistsLoaded = createSelector(selectChecklistsFeature, state => state.loaded)
 export const selectChecklistsCreating = createSelector(selectChecklistsFeature, state => state.creating)
+export const selectChecklistsDeleting = createSelector(selectChecklistsFeature, state => state.deleting)
 
 export const selectAsMenuItems = createSelector(
   selectChecklistsEntities,

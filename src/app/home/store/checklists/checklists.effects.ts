@@ -9,7 +9,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { logout } from '../../../core/store/auth'
 import { NotificationService } from '../../../core/services/notification.service'
 
-import { createChecklist, createChecklistFailure, createChecklistSuccess, deleteChecklist, deleteChecklistSuccess, loadChecklists, loadChecklistsSuccess, resetChecklists, toggleQuestion } from './checklists.actions'
+import { createChecklist, createChecklistFailure, createChecklistSuccess, deleteChecklist, deleteChecklistFailure, deleteChecklistSuccess, loadChecklists, loadChecklistsSuccess, resetChecklists, toggleQuestion } from './checklists.actions'
 import { ChecklistsService } from '../../checklists/services/checklists.service'
  
 @Injectable()
@@ -43,11 +43,18 @@ export class ChecklistsEffects {
     switchMap(action => {
       return this.checklistsService.deleteChecklist(action).pipe(
         switchMap(() => from(this.router.navigate(['checklists', 'new']))),
-        map(() => deleteChecklistSuccess(action))
-        // TODO: error handling
+        map(() => deleteChecklistSuccess(action)),
+        catchError((error: HttpErrorResponse) => of(deleteChecklistFailure({ error: this.extractErrorMessage(error) })))
       )
     })
   ))
+
+  deleteChecklistFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(deleteChecklistFailure),
+    tap(({ error }) => {
+      this.notificationService.showChecklistsError(error)
+    })
+  ), { dispatch: false })
 
   loadChecklists$ = createEffect(() => this.actions$.pipe(
     ofType(loadChecklists),
@@ -56,7 +63,7 @@ export class ChecklistsEffects {
     // TODO: error handling
   ))
 
-  resetChecklists$ = createEffect(() => this.actions$.pipe(
+  resetChecklistsOnLogout$ = createEffect(() => this.actions$.pipe(
     ofType(logout),
     map(() => resetChecklists())
   ))

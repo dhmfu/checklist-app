@@ -7,6 +7,7 @@ import {
   createChecklistFailure,
   createChecklistSuccess,
   deleteChecklist,
+  deleteChecklistFailure,
   deleteChecklistSuccess,
   loadChecklists,
   loadChecklistsSuccess,
@@ -18,14 +19,16 @@ export interface ChecklistsState {
   entities: { [id: string]: Checklist }
   loaded: boolean
   loading: boolean,
-  creating: boolean
+  creating: boolean,
+  deleting: boolean
 }
 
 export const initialState: ChecklistsState = {
   entities: {},
   loading: false,
   loaded: false,
-  creating: false
+  creating: false,
+  deleting: false
 }
 
 export const checklistsReducer = createReducer(
@@ -63,15 +66,13 @@ export const checklistsReducer = createReducer(
 
     return { ...state, entities }
   }),
-  on(deleteChecklist, (state) => {
-    // TODO: Implement some transition-state
-    return state
-  }),
+  on(deleteChecklist, state => ({ ...state, deleting: true })),
   on(deleteChecklistSuccess, (state, action) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { [action.id]: removedChecklist, ...entities } = state.entities
 
-    return { ...state, entities }
+    return { ...state, entities, deleting: false }
   }),
+  on(deleteChecklistFailure, state => ({ ...state, deleting: false })),
   on(resetChecklists, () => ({ ...initialState }))
 )

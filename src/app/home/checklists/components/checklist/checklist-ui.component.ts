@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core'
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, HostBinding } from '@angular/core'
 
 import { Checklist } from '../../../models/checklist.interface'
 import { ToggleQuestion } from '../../../models/events/toggle-question.interface'
@@ -12,6 +12,8 @@ import { Question } from '../../../models/question.interface'
 })
 export class ChecklistUiComponent {
   @Input() checklist!: Checklist
+
+  @HostBinding('class.loading') @Input() loading = false
 
   @Output() questionToggled = new EventEmitter<ToggleQuestion>()
   @Output() deleteChecklist = new EventEmitter<void>()

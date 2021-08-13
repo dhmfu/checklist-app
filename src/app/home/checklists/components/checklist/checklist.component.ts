@@ -16,6 +16,7 @@ import { ChecklistsFacadeService } from '../../facade/checklists-facade.service'
 })
 export class ChecklistComponent implements OnInit {
   checklist$!: Observable<Checklist>
+  isDeleting$ = this.checklistsService.getIsDeleting()
 
   constructor(private checklistsService: ChecklistsFacadeService, private dialog: MatDialog) {}
 

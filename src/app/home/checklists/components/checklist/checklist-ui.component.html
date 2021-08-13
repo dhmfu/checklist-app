@@ -1,15 +1,18 @@
-<h1>
-  {{ checklist.name }}
-  <button mat-icon-button (click)="onDeleteClick()">
-    <mat-icon>delete_outline</mat-icon>
-  </button>
-</h1>
-<mat-action-list>
-  <mat-checkbox *ngFor="let question of checklist.questions; index as i; trackBy: trackQuestionsBy"
-                color="primary"
-                mat-list-item
-                [checked]="question.checked"
-                (change)="onChange($event.checked, i)">
-    {{ question.term }}
-  </mat-checkbox>
-</mat-action-list>
+<ng-container *ngIf="!loading; else loadingView">
+  <h1>
+    {{ checklist.name }}
+    <button mat-icon-button (click)="onDeleteClick()">
+      <mat-icon>delete_outline</mat-icon>
+    </button>
+  </h1>
+  <mat-action-list>
+    <mat-checkbox *ngFor="let question of checklist.questions; index as i; trackBy: trackQuestionsBy"
+                  color="primary"
+                  mat-list-item
+                  [checked]="question.checked"
+                  (change)="onChange($event.checked, i)">
+      {{ question.term }}
+    </mat-checkbox>
+  </mat-action-list>
+</ng-container>
+<ng-template #loadingView><mat-spinner></mat-spinner></ng-template>

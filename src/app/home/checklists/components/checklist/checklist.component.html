@@ -1,4 +1,5 @@
 <app-checklist-ui [checklist]="(checklist$ | async)!"
+                  [loading]="(isDeleting$ | async)!"
                   (questionToggled)="onQuestionToggled($event)"
                   (deleteChecklist)="onDeleteChecklist()">
 </app-checklist-ui>
