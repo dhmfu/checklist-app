@@ -15,6 +15,11 @@ export const loadChecklistsSuccess = createAction(
   props<{ checklists: Checklist[] }>()
 )
 
+export const loadChecklistsFailure = createAction(
+  `[${CHECKLISTS_ACTION_TAG}] Load Checklists Failure`,
+  props<{ error: string }>()
+)
+
 export const createChecklist = createAction(
   `[${CHECKLISTS_ACTION_TAG}] Create Checklist`,
   props<ChecklistFormData>()

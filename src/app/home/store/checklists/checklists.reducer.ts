@@ -10,6 +10,7 @@ import {
   deleteChecklistFailure,
   deleteChecklistSuccess,
   loadChecklists,
+  loadChecklistsFailure,
   loadChecklistsSuccess,
   resetChecklists,
   toggleQuestion
@@ -43,6 +44,7 @@ export const checklistsReducer = createReducer(
 
     return { ...state, entities, loading: false, loaded: true }
   }),
+  on(loadChecklistsFailure, state => ({ ...state, loading: false, loaded: true })),
   on(createChecklist, state => ({...state, creating: true })),
   on(createChecklistSuccess, (state, { id, name, questions }) => {
     const entities = { ...state.entities, [id]: { id, name, questions } }
