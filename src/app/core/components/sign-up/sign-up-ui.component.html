@@ -13,7 +13,12 @@
             <mat-label>Пароль</mat-label>
             <input name="password" matInput type="password" formControlName="password">
         </mat-form-field>
-        <button mat-button type="submit" [disabled]="signUpForm.invalid">Зберегти</button>
+        <mat-form-field appearance="outline">
+            <mat-label>Підтвердіть пароль</mat-label>
+            <input name="confirm-password" matInput type="password" formControlName="confirmPassword">
+            <mat-error *ngIf="showPasswordsError">Паролі мають збігатись</mat-error>
+        </mat-form-field>
+        <button mat-button type="submit">Зберегти</button>
     </form>
     <div class="cta">Вже маєте аккаунт?<a mat-button routerLink="login" [relativeTo]="null">Вхід</a></div>
 </app-auth-layout>

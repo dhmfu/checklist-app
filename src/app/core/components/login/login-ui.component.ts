@@ -2,8 +2,7 @@ import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angul
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 import { LoginCredentials } from '../../models/credentials'
-
-// TODO: type-check login-form
+import { LoginFormControls } from '../../models/login-form.interface'
 
 @Component({
   selector: 'app-login-ui',
@@ -16,10 +15,12 @@ export class LoginUiComponent {
   @Output() login = new EventEmitter<LoginCredentials>()
 
   constructor(private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    })
+    const groupConfig: LoginFormControls = {
+      email: this.fb.control('', [Validators.required, Validators.email]),
+      password: this.fb.control('', Validators.required),
+    }
+
+    this.loginForm = this.fb.group(groupConfig)
   }
 
   onSubmit(): void {

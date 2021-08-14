@@ -2,9 +2,9 @@ import { Component, ChangeDetectionStrategy, EventEmitter, Output } from '@angul
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 
 import { SignUpCredentials } from '../../models/credentials'
+import { SignUpFormControls } from '../../models/sign-up-form.interface'
 
-// TODO: type-check sign-up-form
-// TODO: confirmPassword control
+import { passwordsMatch, PASSWORD_MISMATCH_ERROR_KEY } from '../../util/passwords-match.validator'
 
 @Component({
   selector: 'app-sign-up-ui',
@@ -14,13 +14,22 @@ import { SignUpCredentials } from '../../models/credentials'
 export class SignUpUiComponent {
   signUpForm: FormGroup
 
+  get showPasswordsError(): boolean {
+    return this.signUpForm.controls.confirmPassword.touched && this.signUpForm.getError(PASSWORD_MISMATCH_ERROR_KEY)
+  }
+
   @Output() signUp = new EventEmitter<SignUpCredentials>()
 
   constructor(private fb: FormBuilder) {
-    this.signUpForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+    const groupConfig: SignUpFormControls = {
+      name: this.fb.control('', Validators.required),
+      email: this.fb.control('', [Validators.required, Validators.email]),
+      password: this.fb.control('', Validators.required),
+      confirmPassword: this.fb.control('', Validators.required)
+    }
+
+    this.signUpForm = this.fb.group(groupConfig, {
+      validators: [passwordsMatch]
     })
   }
 
@@ -31,7 +40,9 @@ export class SignUpUiComponent {
         document.activeElement.blur()
       }
 
-      this.signUp.emit(this.signUpForm.value)
+      const { name, email, password } = this.signUpForm.value
+
+      this.signUp.emit({ name, email, password })
     }
   }
 }

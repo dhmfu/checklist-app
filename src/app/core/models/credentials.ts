@@ -1,10 +1,6 @@
-export interface LoginCredentials {
-  email: string
-  password: string
-}
+import { LoginFormData } from "./login-form.interface"
+import { SignUpFormData } from "./sign-up-form.interface"
 
-export interface SignUpCredentials {
-  email: string
-  name: string
-  password: string
-}
+export type LoginCredentials = LoginFormData
+
+export type SignUpCredentials = SignUpFormData
